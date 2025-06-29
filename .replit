@@ -21,5 +21,9 @@ task = "shell.exec"
 args = "streamlit run app.py --server.address 0.0.0.0 --server.port 5000 --server.headless true"
 
 [[ports]]
+localPort = 5000
+externalPort = 5000
+
+[[ports]]
 localPort = 8501
 externalPort = 80
