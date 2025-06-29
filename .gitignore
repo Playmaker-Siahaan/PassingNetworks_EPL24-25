@@ -1,0 +1,19 @@
+# Ignore virtual environments
+venv/
+ENV/
+.env
+__pycache__/
+*.pyc
+
+# Ignore binary files and large libs
+*.dll
+*.lib
+*.so
+*.dylib
+
+# Jupyter cache (jika ada)
+.ipynb_checkpoints/
+
+# System
+.DS_Store
+Thumbs.db
