@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f3944b56184016451c73a373518eb70c73a4906936b9e1983faaebd463508c8f
-size 294
+import snowflake.connector
+import os
+
+ctx = snowflake.connector.connect(
+    user=os.getenv('SF_USER'),
+    password=os.getenv('SF_PWD'),
+    account=os.getenv('SF_ACCOUNT'),
+)
+cs = ctx.cursor()
+cs.execute("SELECT current_version()")
+print(cs.fetchone()[0])
+cs.close()
+ctx.close()

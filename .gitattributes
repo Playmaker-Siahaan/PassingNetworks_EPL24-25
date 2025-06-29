@@ -1,7 +1,0 @@
-*.csv filter=lfs diff=lfs merge=lfs -text
-*.py filter=lfs diff=lfs merge=lfs -text
-*.premier_league_full_380_matches.csv filter=lfs diff=lfs merge=lfs -text
-*.fantasy_premier_league.csv filter=lfs diff=lfs merge=lfs -text
-*.app.py filter=lfs diff=lfs merge=lfs -text
-*.api_football_client.py filter=lfs diff=lfs merge=lfs -text
-*.validate.py filter=lfs diff=lfs merge=lfs -text

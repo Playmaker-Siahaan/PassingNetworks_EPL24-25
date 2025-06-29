@@ -1,3 +1,381 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4b53d80edd65294305227070f7f93fcbf769f80cdbc04eb5bbe8bfd2a411b29f
-size 26767
+match_id,gameweek,date,time,home_team,away_team,venue,status
+1,1,2024-08-13,20:00,Brighton,Crystal Palace,Brighton Stadium,SCHEDULED
+2,1,2024-08-11,20:00,Liverpool,Wolves,Liverpool Stadium,SCHEDULED
+3,1,2024-08-12,12:30,Brentford,Man Utd,Brentford Stadium,SCHEDULED
+4,1,2024-08-10,12:30,Chelsea,Newcastle,Chelsea Stadium,SCHEDULED
+5,1,2024-08-13,17:30,Crystal Palace,Leicester,Crystal Palace Stadium,SCHEDULED
+6,1,2024-08-13,15:00,Brighton,Man City,Brighton Stadium,SCHEDULED
+7,1,2024-08-12,15:00,Bournemouth,Everton,Bournemouth Stadium,SCHEDULED
+8,1,2024-08-10,17:30,Leicester,West Ham,Leicester Stadium,SCHEDULED
+9,1,2024-08-13,12:30,Crystal Palace,Wolves,Crystal Palace Stadium,SCHEDULED
+10,1,2024-08-13,17:30,Aston Villa,Nott'm Forest,Aston Villa Stadium,SCHEDULED
+11,2,2024-08-16,17:30,Brentford,Spurs,Brentford Stadium,SCHEDULED
+12,2,2024-08-16,20:00,Nott'm Forest,Southampton,Nott'm Forest Stadium,SCHEDULED
+13,2,2024-08-16,12:30,Aston Villa,Wolves,Aston Villa Stadium,SCHEDULED
+14,2,2024-08-15,20:00,Newcastle,Nott'm Forest,Newcastle Stadium,SCHEDULED
+15,2,2024-08-17,12:30,Brentford,Chelsea,Brentford Stadium,SCHEDULED
+16,2,2024-08-15,20:00,Man Utd,Wolves,Man Utd Stadium,SCHEDULED
+17,2,2024-08-17,20:00,Everton,Nott'm Forest,Everton Stadium,SCHEDULED
+18,2,2024-08-15,12:30,Brighton,West Ham,Brighton Stadium,SCHEDULED
+19,2,2024-08-16,12:30,Bournemouth,Wolves,Bournemouth Stadium,SCHEDULED
+20,2,2024-08-18,15:00,Man Utd,Spurs,Man Utd Stadium,SCHEDULED
+21,3,2024-08-22,20:00,Man Utd,Southampton,Man Utd Stadium,SCHEDULED
+22,3,2024-08-21,12:30,Fulham,Spurs,Fulham Stadium,SCHEDULED
+23,3,2024-08-20,12:30,Crystal Palace,Fulham,Crystal Palace Stadium,SCHEDULED
+24,3,2024-08-20,17:30,Arsenal,West Ham,Arsenal Stadium,SCHEDULED
+25,3,2024-08-21,15:00,Aston Villa,Liverpool,Aston Villa Stadium,SCHEDULED
+26,3,2024-08-22,15:00,Aston Villa,Southampton,Aston Villa Stadium,SCHEDULED
+27,3,2024-08-22,17:30,Man City,Spurs,Man City Stadium,SCHEDULED
+28,3,2024-08-23,15:00,Man City,Wolves,Man City Stadium,SCHEDULED
+29,3,2024-08-23,12:30,Brighton,Fulham,Brighton Stadium,SCHEDULED
+30,3,2024-08-22,20:00,Crystal Palace,Man Utd,Crystal Palace Stadium,SCHEDULED
+31,4,2024-08-28,15:00,Bournemouth,Ipswich,Bournemouth Stadium,SCHEDULED
+32,4,2024-08-26,12:30,Aston Villa,Newcastle,Aston Villa Stadium,SCHEDULED
+33,4,2024-08-26,12:30,Brentford,Wolves,Brentford Stadium,SCHEDULED
+34,4,2024-08-25,20:00,Fulham,Wolves,Fulham Stadium,SCHEDULED
+35,4,2024-08-27,17:30,Brentford,Brighton,Brentford Stadium,SCHEDULED
+36,4,2024-08-28,17:30,Brighton,Man Utd,Brighton Stadium,SCHEDULED
+37,4,2024-08-27,17:30,Crystal Palace,Nott'm Forest,Crystal Palace Stadium,SCHEDULED
+38,4,2024-08-25,15:00,Arsenal,Man City,Arsenal Stadium,SCHEDULED
+39,4,2024-08-25,20:00,Brighton,Spurs,Brighton Stadium,SCHEDULED
+40,4,2024-08-25,20:00,Fulham,Newcastle,Fulham Stadium,SCHEDULED
+41,5,2024-08-28,12:30,Brentford,Newcastle,Brentford Stadium,SCHEDULED
+42,5,2024-08-28,20:00,Ipswich,Southampton,Ipswich Stadium,SCHEDULED
+43,5,2024-08-28,15:00,Everton,Wolves,Everton Stadium,SCHEDULED
+44,5,2024-08-28,12:30,Bournemouth,Southampton,Bournemouth Stadium,SCHEDULED
+45,5,2024-08-28,12:30,Bournemouth,Chelsea,Bournemouth Stadium,SCHEDULED
+46,5,2024-08-28,17:30,Bournemouth,Leicester,Bournemouth Stadium,SCHEDULED
+47,5,2024-08-28,17:30,Chelsea,Man City,Chelsea Stadium,SCHEDULED
+48,5,2024-08-28,12:30,Aston Villa,Leicester,Aston Villa Stadium,SCHEDULED
+49,5,2024-08-28,20:00,Ipswich,Man Utd,Ipswich Stadium,SCHEDULED
+50,5,2024-08-28,12:30,Arsenal,Southampton,Arsenal Stadium,SCHEDULED
+51,6,2024-09-10,17:30,Brighton,Southampton,Brighton Stadium,SCHEDULED
+52,6,2024-09-11,20:00,Arsenal,Newcastle,Arsenal Stadium,SCHEDULED
+53,6,2024-09-10,15:00,Ipswich,Spurs,Ipswich Stadium,SCHEDULED
+54,6,2024-09-12,17:30,Leicester,Man City,Leicester Stadium,SCHEDULED
+55,6,2024-09-13,15:00,Spurs,Wolves,Spurs Stadium,SCHEDULED
+56,6,2024-09-10,15:00,Brighton,Wolves,Brighton Stadium,SCHEDULED
+57,6,2024-09-11,15:00,Crystal Palace,Ipswich,Crystal Palace Stadium,SCHEDULED
+58,6,2024-09-12,17:30,Man City,West Ham,Man City Stadium,SCHEDULED
+59,6,2024-09-12,20:00,Newcastle,Wolves,Newcastle Stadium,SCHEDULED
+60,6,2024-09-13,17:30,Leicester,Newcastle,Leicester Stadium,SCHEDULED
+61,7,2024-09-16,17:30,Everton,Man City,Everton Stadium,SCHEDULED
+62,7,2024-09-15,15:00,Crystal Palace,Man City,Crystal Palace Stadium,SCHEDULED
+63,7,2024-09-18,20:00,Crystal Palace,Spurs,Crystal Palace Stadium,SCHEDULED
+64,7,2024-09-15,15:00,Arsenal,Ipswich,Arsenal Stadium,SCHEDULED
+65,7,2024-09-18,17:30,Bournemouth,Man Utd,Bournemouth Stadium,SCHEDULED
+66,7,2024-09-17,15:00,Brentford,Leicester,Brentford Stadium,SCHEDULED
+67,7,2024-09-15,12:30,Chelsea,West Ham,Chelsea Stadium,SCHEDULED
+68,7,2024-09-17,20:00,Chelsea,Wolves,Chelsea Stadium,SCHEDULED
+69,7,2024-09-15,17:30,Arsenal,Man Utd,Arsenal Stadium,SCHEDULED
+70,7,2024-09-17,17:30,Chelsea,Everton,Chelsea Stadium,SCHEDULED
+71,8,2024-09-22,15:00,Brighton,Nott'm Forest,Brighton Stadium,SCHEDULED
+72,8,2024-09-21,15:00,Arsenal,Aston Villa,Arsenal Stadium,SCHEDULED
+73,8,2024-09-20,17:30,Arsenal,Brentford,Arsenal Stadium,SCHEDULED
+74,8,2024-09-20,15:00,Bournemouth,West Ham,Bournemouth Stadium,SCHEDULED
+75,8,2024-09-20,12:30,Chelsea,Nott'm Forest,Chelsea Stadium,SCHEDULED
+76,8,2024-09-21,20:00,Brentford,Everton,Brentford Stadium,SCHEDULED
+77,8,2024-09-22,20:00,Ipswich,Liverpool,Ipswich Stadium,SCHEDULED
+78,8,2024-09-23,20:00,Fulham,Liverpool,Fulham Stadium,SCHEDULED
+79,8,2024-09-22,15:00,Everton,Man Utd,Everton Stadium,SCHEDULED
+80,8,2024-09-20,20:00,Everton,Southampton,Everton Stadium,SCHEDULED
+81,9,2024-09-27,20:00,Brighton,Liverpool,Brighton Stadium,SCHEDULED
+82,9,2024-09-28,15:00,Bournemouth,Fulham,Bournemouth Stadium,SCHEDULED
+83,9,2024-09-28,15:00,Brighton,Everton,Brighton Stadium,SCHEDULED
+84,9,2024-09-26,20:00,Bournemouth,Brighton,Bournemouth Stadium,SCHEDULED
+85,9,2024-09-25,15:00,Everton,Spurs,Everton Stadium,SCHEDULED
+86,9,2024-09-26,17:30,Southampton,Spurs,Southampton Stadium,SCHEDULED
+87,9,2024-09-27,20:00,Fulham,Man Utd,Fulham Stadium,SCHEDULED
+88,9,2024-09-27,12:30,Chelsea,Southampton,Chelsea Stadium,SCHEDULED
+89,9,2024-09-27,17:30,Everton,Ipswich,Everton Stadium,SCHEDULED
+90,9,2024-09-25,20:00,Bournemouth,Brentford,Bournemouth Stadium,SCHEDULED
+91,10,2024-09-28,12:30,Liverpool,West Ham,Liverpool Stadium,SCHEDULED
+92,10,2024-09-28,12:30,Brentford,Crystal Palace,Brentford Stadium,SCHEDULED
+93,10,2024-09-28,12:30,Aston Villa,Ipswich,Aston Villa Stadium,SCHEDULED
+94,10,2024-09-28,17:30,Bournemouth,Spurs,Bournemouth Stadium,SCHEDULED
+95,10,2024-09-28,12:30,Arsenal,Spurs,Arsenal Stadium,SCHEDULED
+96,10,2024-09-28,15:00,Newcastle,Southampton,Newcastle Stadium,SCHEDULED
+97,10,2024-09-28,15:00,Ipswich,West Ham,Ipswich Stadium,SCHEDULED
+98,10,2024-09-28,20:00,Fulham,Southampton,Fulham Stadium,SCHEDULED
+99,10,2024-09-28,12:30,Bournemouth,Man City,Bournemouth Stadium,SCHEDULED
+100,10,2024-09-28,17:30,Crystal Palace,Everton,Crystal Palace Stadium,SCHEDULED
+101,11,2024-10-13,15:00,Liverpool,Man Utd,Liverpool Stadium,SCHEDULED
+102,11,2024-10-11,20:00,Arsenal,Bournemouth,Arsenal Stadium,SCHEDULED
+103,11,2024-10-10,15:00,Aston Villa,Fulham,Aston Villa Stadium,SCHEDULED
+104,11,2024-10-12,12:30,Bournemouth,Crystal Palace,Bournemouth Stadium,SCHEDULED
+105,11,2024-10-11,20:00,Man City,Man Utd,Man City Stadium,SCHEDULED
+106,11,2024-10-11,15:00,Man City,Southampton,Man City Stadium,SCHEDULED
+107,11,2024-10-12,17:30,Leicester,Spurs,Leicester Stadium,SCHEDULED
+108,11,2024-10-13,17:30,Everton,Leicester,Everton Stadium,SCHEDULED
+109,11,2024-10-10,15:00,Everton,Fulham,Everton Stadium,SCHEDULED
+110,11,2024-10-10,20:00,Aston Villa,Man Utd,Aston Villa Stadium,SCHEDULED
+111,12,2024-10-15,15:00,Fulham,Nott'm Forest,Fulham Stadium,SCHEDULED
+112,12,2024-10-17,20:00,Bournemouth,Newcastle,Bournemouth Stadium,SCHEDULED
+113,12,2024-10-17,15:00,Aston Villa,Bournemouth,Aston Villa Stadium,SCHEDULED
+114,12,2024-10-17,17:30,Arsenal,Nott'm Forest,Arsenal Stadium,SCHEDULED
+115,12,2024-10-15,17:30,Chelsea,Ipswich,Chelsea Stadium,SCHEDULED
+116,12,2024-10-17,17:30,Chelsea,Leicester,Chelsea Stadium,SCHEDULED
+117,12,2024-10-15,20:00,Liverpool,Nott'm Forest,Liverpool Stadium,SCHEDULED
+118,12,2024-10-16,15:00,Ipswich,Man City,Ipswich Stadium,SCHEDULED
+119,12,2024-10-15,12:30,Nott'm Forest,Spurs,Nott'm Forest Stadium,SCHEDULED
+120,12,2024-10-15,12:30,Brentford,Man City,Brentford Stadium,SCHEDULED
+121,13,2024-10-20,15:00,Liverpool,Man City,Liverpool Stadium,SCHEDULED
+122,13,2024-10-22,17:30,Chelsea,Liverpool,Chelsea Stadium,SCHEDULED
+123,13,2024-10-20,17:30,Crystal Palace,Newcastle,Crystal Palace Stadium,SCHEDULED
+124,13,2024-10-23,15:00,Crystal Palace,Liverpool,Crystal Palace Stadium,SCHEDULED
+125,13,2024-10-22,15:00,Brentford,West Ham,Brentford Stadium,SCHEDULED
+126,13,2024-10-20,20:00,Fulham,Leicester,Fulham Stadium,SCHEDULED
+127,13,2024-10-21,17:30,Aston Villa,Brighton,Aston Villa Stadium,SCHEDULED
+128,13,2024-10-23,17:30,Ipswich,Leicester,Ipswich Stadium,SCHEDULED
+129,13,2024-10-20,15:00,Fulham,Ipswich,Fulham Stadium,SCHEDULED
+130,13,2024-10-22,15:00,Man Utd,Newcastle,Man Utd Stadium,SCHEDULED
+131,14,2024-10-26,15:00,Southampton,Wolves,Southampton Stadium,SCHEDULED
+132,14,2024-10-28,20:00,Liverpool,Spurs,Liverpool Stadium,SCHEDULED
+133,14,2024-10-28,12:30,Brighton,Ipswich,Brighton Stadium,SCHEDULED
+134,14,2024-10-28,20:00,Ipswich,Wolves,Ipswich Stadium,SCHEDULED
+135,14,2024-10-26,17:30,Chelsea,Fulham,Chelsea Stadium,SCHEDULED
+136,14,2024-10-26,17:30,Chelsea,Man Utd,Chelsea Stadium,SCHEDULED
+137,14,2024-10-26,20:00,Brighton,Newcastle,Brighton Stadium,SCHEDULED
+138,14,2024-10-26,20:00,Arsenal,Chelsea,Arsenal Stadium,SCHEDULED
+139,14,2024-10-27,12:30,Nott'm Forest,West Ham,Nott'm Forest Stadium,SCHEDULED
+140,14,2024-10-25,15:00,Brighton,Chelsea,Brighton Stadium,SCHEDULED
+141,15,2024-10-28,15:00,Leicester,Wolves,Leicester Stadium,SCHEDULED
+142,15,2024-10-28,12:30,Aston Villa,Everton,Aston Villa Stadium,SCHEDULED
+143,15,2024-10-28,17:30,Newcastle,West Ham,Newcastle Stadium,SCHEDULED
+144,15,2024-10-28,12:30,Man City,Newcastle,Man City Stadium,SCHEDULED
+145,15,2024-10-28,12:30,Ipswich,Nott'm Forest,Ipswich Stadium,SCHEDULED
+146,15,2024-10-28,15:00,Chelsea,Spurs,Chelsea Stadium,SCHEDULED
+147,15,2024-10-28,15:00,Leicester,Southampton,Leicester Stadium,SCHEDULED
+148,15,2024-10-28,12:30,Arsenal,Wolves,Arsenal Stadium,SCHEDULED
+149,15,2024-10-28,15:00,Ipswich,Newcastle,Ipswich Stadium,SCHEDULED
+150,15,2024-10-28,12:30,Leicester,Nott'm Forest,Leicester Stadium,SCHEDULED
+151,16,2024-11-12,20:00,Arsenal,Leicester,Arsenal Stadium,SCHEDULED
+152,16,2024-11-13,17:30,Fulham,Man City,Fulham Stadium,SCHEDULED
+153,16,2024-11-11,15:00,Aston Villa,Man City,Aston Villa Stadium,SCHEDULED
+154,16,2024-11-10,20:00,Arsenal,Liverpool,Arsenal Stadium,SCHEDULED
+155,16,2024-11-13,20:00,Liverpool,Southampton,Liverpool Stadium,SCHEDULED
+156,16,2024-11-12,12:30,Southampton,West Ham,Southampton Stadium,SCHEDULED
+157,16,2024-11-10,17:30,Crystal Palace,Southampton,Crystal Palace Stadium,SCHEDULED
+158,16,2024-11-13,20:00,Leicester,Liverpool,Leicester Stadium,SCHEDULED
+159,16,2024-11-13,20:00,Arsenal,Everton,Arsenal Stadium,SCHEDULED
+160,16,2024-11-13,17:30,Fulham,West Ham,Fulham Stadium,SCHEDULED
+161,17,2024-11-18,17:30,Man City,Nott'm Forest,Man City Stadium,SCHEDULED
+162,17,2024-11-17,17:30,Everton,Liverpool,Everton Stadium,SCHEDULED
+163,17,2024-11-15,12:30,Aston Villa,Chelsea,Aston Villa Stadium,SCHEDULED
+164,17,2024-11-17,12:30,Leicester,Man Utd,Leicester Stadium,SCHEDULED
+165,17,2024-11-18,20:00,Aston Villa,Brentford,Aston Villa Stadium,SCHEDULED
+166,17,2024-11-16,15:00,Brentford,Liverpool,Brentford Stadium,SCHEDULED
+167,17,2024-11-16,12:30,Liverpool,Newcastle,Liverpool Stadium,SCHEDULED
+168,17,2024-11-16,12:30,Brentford,Southampton,Brentford Stadium,SCHEDULED
+169,17,2024-11-16,17:30,Aston Villa,Spurs,Aston Villa Stadium,SCHEDULED
+170,17,2024-11-18,12:30,Arsenal,Crystal Palace,Arsenal Stadium,SCHEDULED
+171,18,2024-11-22,15:00,Bournemouth,Nott'm Forest,Bournemouth Stadium,SCHEDULED
+172,18,2024-11-22,12:30,Arsenal,Fulham,Arsenal Stadium,SCHEDULED
+173,18,2024-11-20,12:30,Spurs,West Ham,Spurs Stadium,SCHEDULED
+174,18,2024-11-23,12:30,Arsenal,Brighton,Arsenal Stadium,SCHEDULED
+175,18,2024-11-23,17:30,Man Utd,West Ham,Man Utd Stadium,SCHEDULED
+176,18,2024-11-20,17:30,Aston Villa,West Ham,Aston Villa Stadium,SCHEDULED
+177,18,2024-11-20,15:00,Chelsea,Crystal Palace,Chelsea Stadium,SCHEDULED
+178,18,2024-11-23,15:00,Everton,Newcastle,Everton Stadium,SCHEDULED
+179,18,2024-11-23,17:30,Newcastle,Spurs,Newcastle Stadium,SCHEDULED
+180,18,2024-11-23,15:00,Man Utd,Nott'm Forest,Man Utd Stadium,SCHEDULED
+181,19,2024-11-28,20:00,Brighton,Leicester,Brighton Stadium,SCHEDULED
+182,19,2024-11-28,12:30,Bournemouth,Liverpool,Bournemouth Stadium,SCHEDULED
+183,19,2024-11-28,17:30,Everton,West Ham,Everton Stadium,SCHEDULED
+184,19,2024-11-27,20:00,Aston Villa,Crystal Palace,Aston Villa Stadium,SCHEDULED
+185,19,2024-11-27,12:30,Crystal Palace,West Ham,Crystal Palace Stadium,SCHEDULED
+186,19,2024-11-27,17:30,Brentford,Nott'm Forest,Brentford Stadium,SCHEDULED
+187,19,2024-11-25,17:30,West Ham,Wolves,West Ham Stadium,SCHEDULED
+188,19,2024-11-28,12:30,Brentford,Ipswich,Brentford Stadium,SCHEDULED
+189,19,2024-11-27,17:30,Brentford,Fulham,Brentford Stadium,SCHEDULED
+190,19,2024-11-28,15:00,Nott'm Forest,Wolves,Nott'm Forest Stadium,SCHEDULED
+191,20,2025-01-11,12:30,Everton,Brighton,Everton Stadium,SCHEDULED
+192,20,2025-01-10,12:30,West Ham,Bournemouth,West Ham Stadium,SCHEDULED
+193,20,2025-01-10,15:00,Man Utd,Chelsea,Man Utd Stadium,SCHEDULED
+194,20,2025-01-11,15:00,Spurs,Southampton,Spurs Stadium,SCHEDULED
+195,20,2025-01-10,20:00,Spurs,Man City,Spurs Stadium,SCHEDULED
+196,20,2025-01-09,12:30,Newcastle,Man Utd,Newcastle Stadium,SCHEDULED
+197,20,2025-01-11,17:30,Southampton,Man City,Southampton Stadium,SCHEDULED
+198,20,2025-01-10,15:00,Wolves,Brighton,Wolves Stadium,SCHEDULED
+199,20,2025-01-10,15:00,Man Utd,Ipswich,Man Utd Stadium,SCHEDULED
+200,20,2025-01-10,17:30,Newcastle,Brentford,Newcastle Stadium,SCHEDULED
+201,21,2025-01-13,12:30,Spurs,Bournemouth,Spurs Stadium,SCHEDULED
+202,21,2025-01-14,15:00,Newcastle,Crystal Palace,Newcastle Stadium,SCHEDULED
+203,21,2025-01-14,20:00,West Ham,Ipswich,West Ham Stadium,SCHEDULED
+204,21,2025-01-13,15:00,Ipswich,Fulham,Ipswich Stadium,SCHEDULED
+205,21,2025-01-13,20:00,West Ham,Leicester,West Ham Stadium,SCHEDULED
+206,21,2025-01-16,20:00,Wolves,Fulham,Wolves Stadium,SCHEDULED
+207,21,2025-01-15,17:30,Liverpool,Everton,Liverpool Stadium,SCHEDULED
+208,21,2025-01-13,12:30,Ipswich,Brentford,Ipswich Stadium,SCHEDULED
+209,21,2025-01-13,12:30,Wolves,Newcastle,Wolves Stadium,SCHEDULED
+210,21,2025-01-16,20:00,Nott'm Forest,Liverpool,Nott'm Forest Stadium,SCHEDULED
+211,22,2025-01-18,12:30,Everton,Arsenal,Everton Stadium,SCHEDULED
+212,22,2025-01-18,15:00,West Ham,Man Utd,West Ham Stadium,SCHEDULED
+213,22,2025-01-19,20:00,Leicester,Bournemouth,Leicester Stadium,SCHEDULED
+214,22,2025-01-19,15:00,Man City,Ipswich,Man City Stadium,SCHEDULED
+215,22,2025-01-18,15:00,Southampton,Nott'm Forest,Southampton Stadium,SCHEDULED
+216,22,2025-01-20,12:30,Nott'm Forest,Man City,Nott'm Forest Stadium,SCHEDULED
+217,22,2025-01-20,20:00,Everton,Chelsea,Everton Stadium,SCHEDULED
+218,22,2025-01-20,17:30,Nott'm Forest,Everton,Nott'm Forest Stadium,SCHEDULED
+219,22,2025-01-18,12:30,Liverpool,Aston Villa,Liverpool Stadium,SCHEDULED
+220,22,2025-01-18,17:30,Fulham,Arsenal,Fulham Stadium,SCHEDULED
+221,23,2025-01-23,12:30,Crystal Palace,Brentford,Crystal Palace Stadium,SCHEDULED
+222,23,2025-01-25,12:30,Crystal Palace,Brighton,Crystal Palace Stadium,SCHEDULED
+223,23,2025-01-26,17:30,Ipswich,Crystal Palace,Ipswich Stadium,SCHEDULED
+224,23,2025-01-26,20:00,Wolves,Brentford,Wolves Stadium,SCHEDULED
+225,23,2025-01-23,12:30,Southampton,Fulham,Southampton Stadium,SCHEDULED
+226,23,2025-01-25,15:00,Man Utd,Leicester,Man Utd Stadium,SCHEDULED
+227,23,2025-01-24,12:30,Newcastle,Liverpool,Newcastle Stadium,SCHEDULED
+228,23,2025-01-26,12:30,Nott'm Forest,Ipswich,Nott'm Forest Stadium,SCHEDULED
+229,23,2025-01-24,20:00,Chelsea,Brentford,Chelsea Stadium,SCHEDULED
+230,23,2025-01-26,17:30,Brighton,Arsenal,Brighton Stadium,SCHEDULED
+231,24,2025-01-28,15:00,Nott'm Forest,Aston Villa,Nott'm Forest Stadium,SCHEDULED
+232,24,2025-01-28,20:00,Southampton,Ipswich,Southampton Stadium,SCHEDULED
+233,24,2025-01-28,12:30,Man City,Arsenal,Man City Stadium,SCHEDULED
+234,24,2025-01-28,12:30,Nott'm Forest,Leicester,Nott'm Forest Stadium,SCHEDULED
+235,24,2025-01-28,12:30,Man Utd,Everton,Man Utd Stadium,SCHEDULED
+236,24,2025-01-28,12:30,Ipswich,Chelsea,Ipswich Stadium,SCHEDULED
+237,24,2025-01-28,17:30,Crystal Palace,Bournemouth,Crystal Palace Stadium,SCHEDULED
+238,24,2025-01-28,17:30,Southampton,Everton,Southampton Stadium,SCHEDULED
+239,24,2025-01-28,20:00,Spurs,Man Utd,Spurs Stadium,SCHEDULED
+240,24,2025-01-28,15:00,West Ham,Chelsea,West Ham Stadium,SCHEDULED
+241,25,2025-02-11,17:30,Everton,Aston Villa,Everton Stadium,SCHEDULED
+242,25,2025-02-11,17:30,Leicester,Ipswich,Leicester Stadium,SCHEDULED
+243,25,2025-02-08,17:30,Southampton,Crystal Palace,Southampton Stadium,SCHEDULED
+244,25,2025-02-08,20:00,Wolves,Man City,Wolves Stadium,SCHEDULED
+245,25,2025-02-09,20:00,West Ham,Brighton,West Ham Stadium,SCHEDULED
+246,25,2025-02-10,12:30,Wolves,West Ham,Wolves Stadium,SCHEDULED
+247,25,2025-02-10,15:00,West Ham,Newcastle,West Ham Stadium,SCHEDULED
+248,25,2025-02-11,17:30,Spurs,Crystal Palace,Spurs Stadium,SCHEDULED
+249,25,2025-02-10,17:30,Spurs,Arsenal,Spurs Stadium,SCHEDULED
+250,25,2025-02-09,12:30,Southampton,Liverpool,Southampton Stadium,SCHEDULED
+251,26,2025-02-13,17:30,Fulham,Aston Villa,Fulham Stadium,SCHEDULED
+252,26,2025-02-13,17:30,Spurs,Nott'm Forest,Spurs Stadium,SCHEDULED
+253,26,2025-02-16,17:30,Southampton,Aston Villa,Southampton Stadium,SCHEDULED
+254,26,2025-02-14,12:30,West Ham,Fulham,West Ham Stadium,SCHEDULED
+255,26,2025-02-14,15:00,Brentford,Arsenal,Brentford Stadium,SCHEDULED
+256,26,2025-02-15,20:00,Leicester,Chelsea,Leicester Stadium,SCHEDULED
+257,26,2025-02-16,20:00,West Ham,Man City,West Ham Stadium,SCHEDULED
+258,26,2025-02-16,20:00,West Ham,Arsenal,West Ham Stadium,SCHEDULED
+259,26,2025-02-16,20:00,Man City,Aston Villa,Man City Stadium,SCHEDULED
+260,26,2025-02-13,20:00,Leicester,Crystal Palace,Leicester Stadium,SCHEDULED
+261,27,2025-02-20,15:00,Spurs,Brighton,Spurs Stadium,SCHEDULED
+262,27,2025-02-18,12:30,Newcastle,Arsenal,Newcastle Stadium,SCHEDULED
+263,27,2025-02-20,20:00,Nott'm Forest,Crystal Palace,Nott'm Forest Stadium,SCHEDULED
+264,27,2025-02-21,15:00,Man Utd,Fulham,Man Utd Stadium,SCHEDULED
+265,27,2025-02-18,17:30,Liverpool,Leicester,Liverpool Stadium,SCHEDULED
+266,27,2025-02-20,12:30,Spurs,Everton,Spurs Stadium,SCHEDULED
+267,27,2025-02-19,15:00,Liverpool,Fulham,Liverpool Stadium,SCHEDULED
+268,27,2025-02-20,15:00,Southampton,Brighton,Southampton Stadium,SCHEDULED
+269,27,2025-02-18,15:00,Liverpool,Brentford,Liverpool Stadium,SCHEDULED
+270,27,2025-02-18,17:30,Newcastle,Ipswich,Newcastle Stadium,SCHEDULED
+271,28,2025-02-25,17:30,Nott'm Forest,Bournemouth,Nott'm Forest Stadium,SCHEDULED
+272,28,2025-02-23,15:00,Newcastle,Fulham,Newcastle Stadium,SCHEDULED
+273,28,2025-02-24,12:30,Man Utd,Bournemouth,Man Utd Stadium,SCHEDULED
+274,28,2025-02-26,20:00,Chelsea,Arsenal,Chelsea Stadium,SCHEDULED
+275,28,2025-02-26,17:30,Bournemouth,Arsenal,Bournemouth Stadium,SCHEDULED
+276,28,2025-02-24,17:30,West Ham,Everton,West Ham Stadium,SCHEDULED
+277,28,2025-02-24,12:30,Brighton,Aston Villa,Brighton Stadium,SCHEDULED
+278,28,2025-02-26,15:00,Newcastle,Brighton,Newcastle Stadium,SCHEDULED
+279,28,2025-02-26,17:30,Wolves,Spurs,Wolves Stadium,SCHEDULED
+280,28,2025-02-23,12:30,Leicester,Arsenal,Leicester Stadium,SCHEDULED
+281,29,2025-02-28,15:00,West Ham,Spurs,West Ham Stadium,SCHEDULED
+282,29,2025-02-28,15:00,Nott'm Forest,Arsenal,Nott'm Forest Stadium,SCHEDULED
+283,29,2025-02-28,17:30,Spurs,Liverpool,Spurs Stadium,SCHEDULED
+284,29,2025-02-28,20:00,Leicester,Brentford,Leicester Stadium,SCHEDULED
+285,29,2025-02-28,17:30,Nott'm Forest,Chelsea,Nott'm Forest Stadium,SCHEDULED
+286,29,2025-02-28,12:30,Spurs,Ipswich,Spurs Stadium,SCHEDULED
+287,29,2025-02-28,20:00,Liverpool,Ipswich,Liverpool Stadium,SCHEDULED
+288,29,2025-02-28,20:00,Liverpool,Crystal Palace,Liverpool Stadium,SCHEDULED
+289,29,2025-02-28,15:00,Man City,Chelsea,Man City Stadium,SCHEDULED
+290,29,2025-02-28,20:00,Liverpool,Brighton,Liverpool Stadium,SCHEDULED
+291,30,2025-03-11,20:00,Wolves,Liverpool,Wolves Stadium,SCHEDULED
+292,30,2025-03-11,20:00,Fulham,Chelsea,Fulham Stadium,SCHEDULED
+293,30,2025-03-10,17:30,Wolves,Southampton,Wolves Stadium,SCHEDULED
+294,30,2025-03-09,12:30,Everton,Crystal Palace,Everton Stadium,SCHEDULED
+295,30,2025-03-08,17:30,Brentford,Aston Villa,Brentford Stadium,SCHEDULED
+296,30,2025-03-09,15:00,Man City,Leicester,Man City Stadium,SCHEDULED
+297,30,2025-03-09,12:30,Newcastle,Bournemouth,Newcastle Stadium,SCHEDULED
+298,30,2025-03-08,12:30,Nott'm Forest,Fulham,Nott'm Forest Stadium,SCHEDULED
+299,30,2025-03-11,20:00,Aston Villa,Arsenal,Aston Villa Stadium,SCHEDULED
+300,30,2025-03-09,12:30,Man Utd,Liverpool,Man Utd Stadium,SCHEDULED
+301,31,2025-03-16,12:30,Man Utd,Brentford,Man Utd Stadium,SCHEDULED
+302,31,2025-03-16,15:00,Wolves,Ipswich,Wolves Stadium,SCHEDULED
+303,31,2025-03-14,20:00,West Ham,Southampton,West Ham Stadium,SCHEDULED
+304,31,2025-03-15,20:00,Ipswich,Brighton,Ipswich Stadium,SCHEDULED
+305,31,2025-03-13,17:30,Ipswich,Everton,Ipswich Stadium,SCHEDULED
+306,31,2025-03-15,12:30,Fulham,Brentford,Fulham Stadium,SCHEDULED
+307,31,2025-03-16,15:00,Wolves,Bournemouth,Wolves Stadium,SCHEDULED
+308,31,2025-03-15,17:30,Liverpool,Arsenal,Liverpool Stadium,SCHEDULED
+309,31,2025-03-15,20:00,Chelsea,Bournemouth,Chelsea Stadium,SCHEDULED
+310,31,2025-03-13,17:30,Fulham,Crystal Palace,Fulham Stadium,SCHEDULED
+311,32,2025-03-19,15:00,Everton,Brentford,Everton Stadium,SCHEDULED
+312,32,2025-03-18,15:00,Spurs,Leicester,Spurs Stadium,SCHEDULED
+313,32,2025-03-19,17:30,Southampton,Leicester,Southampton Stadium,SCHEDULED
+314,32,2025-03-21,17:30,Crystal Palace,Chelsea,Crystal Palace Stadium,SCHEDULED
+315,32,2025-03-18,12:30,Leicester,Aston Villa,Leicester Stadium,SCHEDULED
+316,32,2025-03-19,20:00,Bournemouth,Aston Villa,Bournemouth Stadium,SCHEDULED
+317,32,2025-03-18,17:30,Nott'm Forest,Brentford,Nott'm Forest Stadium,SCHEDULED
+318,32,2025-03-21,15:00,Chelsea,Brighton,Chelsea Stadium,SCHEDULED
+319,32,2025-03-19,20:00,Man City,Brighton,Man City Stadium,SCHEDULED
+320,32,2025-03-20,17:30,Leicester,Brighton,Leicester Stadium,SCHEDULED
+321,33,2025-03-23,17:30,Spurs,Chelsea,Spurs Stadium,SCHEDULED
+322,33,2025-03-26,20:00,Crystal Palace,Arsenal,Crystal Palace Stadium,SCHEDULED
+323,33,2025-03-23,20:00,Man City,Liverpool,Man City Stadium,SCHEDULED
+324,33,2025-03-25,20:00,Spurs,Fulham,Spurs Stadium,SCHEDULED
+325,33,2025-03-25,20:00,Brighton,Brentford,Brighton Stadium,SCHEDULED
+326,33,2025-03-24,12:30,Crystal Palace,Aston Villa,Crystal Palace Stadium,SCHEDULED
+327,33,2025-03-26,12:30,Ipswich,Arsenal,Ipswich Stadium,SCHEDULED
+328,33,2025-03-24,20:00,Leicester,Everton,Leicester Stadium,SCHEDULED
+329,33,2025-03-23,15:00,Liverpool,Bournemouth,Liverpool Stadium,SCHEDULED
+330,33,2025-03-24,15:00,Newcastle,Aston Villa,Newcastle Stadium,SCHEDULED
+331,34,2025-03-28,15:00,Nott'm Forest,Newcastle,Nott'm Forest Stadium,SCHEDULED
+332,34,2025-03-28,15:00,Fulham,Brighton,Fulham Stadium,SCHEDULED
+333,34,2025-03-28,20:00,Southampton,Brentford,Southampton Stadium,SCHEDULED
+334,34,2025-03-28,17:30,Wolves,Aston Villa,Wolves Stadium,SCHEDULED
+335,34,2025-03-28,17:30,Man City,Bournemouth,Man City Stadium,SCHEDULED
+336,34,2025-03-28,12:30,Man City,Brentford,Man City Stadium,SCHEDULED
+337,34,2025-03-28,12:30,Man City,Everton,Man City Stadium,SCHEDULED
+338,34,2025-03-28,15:00,Ipswich,Bournemouth,Ipswich Stadium,SCHEDULED
+339,34,2025-03-28,15:00,Fulham,Bournemouth,Fulham Stadium,SCHEDULED
+340,34,2025-03-28,12:30,Fulham,Everton,Fulham Stadium,SCHEDULED
+341,35,2025-04-11,17:30,Nott'm Forest,Brighton,Nott'm Forest Stadium,SCHEDULED
+342,35,2025-04-08,12:30,Wolves,Man Utd,Wolves Stadium,SCHEDULED
+343,35,2025-04-10,15:00,Wolves,Crystal Palace,Wolves Stadium,SCHEDULED
+344,35,2025-04-08,17:30,Everton,Bournemouth,Everton Stadium,SCHEDULED
+345,35,2025-04-09,15:00,Newcastle,Everton,Newcastle Stadium,SCHEDULED
+346,35,2025-04-08,20:00,Man Utd,Brighton,Man Utd Stadium,SCHEDULED
+347,35,2025-04-09,12:30,Wolves,Chelsea,Wolves Stadium,SCHEDULED
+348,35,2025-04-10,12:30,Man Utd,Crystal Palace,Man Utd Stadium,SCHEDULED
+349,35,2025-04-10,15:00,Southampton,Arsenal,Southampton Stadium,SCHEDULED
+350,35,2025-04-08,20:00,Southampton,Man Utd,Southampton Stadium,SCHEDULED
+351,36,2025-04-13,17:30,Man Utd,Arsenal,Man Utd Stadium,SCHEDULED
+352,36,2025-04-13,15:00,Man Utd,Aston Villa,Man Utd Stadium,SCHEDULED
+353,36,2025-04-16,12:30,Spurs,Newcastle,Spurs Stadium,SCHEDULED
+354,36,2025-04-13,12:30,Newcastle,Chelsea,Newcastle Stadium,SCHEDULED
+355,36,2025-04-13,20:00,West Ham,Crystal Palace,West Ham Stadium,SCHEDULED
+356,36,2025-04-13,17:30,Wolves,Leicester,Wolves Stadium,SCHEDULED
+357,36,2025-04-15,12:30,West Ham,Nott'm Forest,West Ham Stadium,SCHEDULED
+358,36,2025-04-13,17:30,Wolves,Arsenal,Wolves Stadium,SCHEDULED
+359,36,2025-04-15,12:30,Man City,Crystal Palace,Man City Stadium,SCHEDULED
+360,36,2025-04-13,20:00,Leicester,Fulham,Leicester Stadium,SCHEDULED
+361,37,2025-04-21,17:30,Southampton,Bournemouth,Southampton Stadium,SCHEDULED
+362,37,2025-04-20,15:00,Brighton,Bournemouth,Brighton Stadium,SCHEDULED
+363,37,2025-04-19,17:30,Spurs,Brentford,Spurs Stadium,SCHEDULED
+364,37,2025-04-18,20:00,Ipswich,Aston Villa,Ipswich Stadium,SCHEDULED
+365,37,2025-04-21,17:30,Southampton,Newcastle,Southampton Stadium,SCHEDULED
+366,37,2025-04-21,17:30,Man Utd,Man City,Man Utd Stadium,SCHEDULED
+367,37,2025-04-19,17:30,Chelsea,Aston Villa,Chelsea Stadium,SCHEDULED
+368,37,2025-04-21,17:30,Southampton,Chelsea,Southampton Stadium,SCHEDULED
+369,37,2025-04-20,12:30,Man City,Fulham,Man City Stadium,SCHEDULED
+370,37,2025-04-19,17:30,West Ham,Brentford,West Ham Stadium,SCHEDULED
+371,38,2025-04-26,12:30,Wolves,Nott'm Forest,Wolves Stadium,SCHEDULED
+372,38,2025-04-23,12:30,West Ham,Liverpool,West Ham Stadium,SCHEDULED
+373,38,2025-04-25,20:00,Brentford,Bournemouth,Brentford Stadium,SCHEDULED
+374,38,2025-04-24,12:30,West Ham,Aston Villa,West Ham Stadium,SCHEDULED
+375,38,2025-04-24,15:00,Spurs,Aston Villa,Spurs Stadium,SCHEDULED
+376,38,2025-04-24,12:30,Newcastle,Leicester,Newcastle Stadium,SCHEDULED
+377,38,2025-04-24,17:30,Wolves,Everton,Wolves Stadium,SCHEDULED
+378,38,2025-04-24,17:30,Liverpool,Chelsea,Liverpool Stadium,SCHEDULED
+379,38,2025-04-25,12:30,Nott'm Forest,Man Utd,Nott'm Forest Stadium,SCHEDULED
+380,38,2025-04-25,15:00,Newcastle,Man City,Newcastle Stadium,SCHEDULED
