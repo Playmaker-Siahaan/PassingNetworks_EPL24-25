@@ -1911,3 +1911,103 @@ def main():
 
 if __name__ == "__main__":
     main()
+# CGAN Training Functions
+import torch
+import torch.nn as nn
+
+def load_player_positions_from_csv(csv_path):
+    """Load player positions from CSV file for CGAN training"""
+    df = pd.read_csv(csv_path)
+    
+    # Create synthetic position data from FPL player data
+    positions = []
+    formation_positions = {
+        "4-3-3": [(0.1, 0.34), (0.25, 0.15), (0.25, 0.34), (0.25, 0.53), (0.4, 0.68),
+                 (0.45, 0.34), (0.5, 0.0), (0.6, 0.34), (0.75, 0.15), (0.75, 0.53), (0.85, 0.34)]
+    }
+    
+    # Generate synthetic match data based on FPL teams
+    teams = df['team'].unique()
+    match_id = 1
+    
+    for team in teams[:20]:  # Use first 20 teams
+        team_players = df[df['team'] == team].head(11)
+        if len(team_players) >= 11:
+            for _ in range(5):  # Generate 5 matches per team
+                base_positions = np.array(formation_positions["4-3-3"])
+                # Add small random variations
+                noise = np.random.normal(0, 0.02, base_positions.shape)
+                varied_positions = base_positions + noise
+                # Ensure positions stay within bounds
+                varied_positions[:, 0] = np.clip(varied_positions[:, 0], 0.05, 0.95)
+                varied_positions[:, 1] = np.clip(varied_positions[:, 1], 0.05, 0.63)
+                positions.append(varied_positions)
+                match_id += 1
+    
+    return np.array(positions)
+
+def train_cgan_on_positions(positions, save_path="cgan_generator.pth", epochs=10):
+    """Train CGAN on player positions data"""
+    import torch.nn as nn
+    
+    device = torch.device("cpu")
+    noise_dim = 100
+    condition_dim = 64
+    output_dim = 22  # 11 players * 2 coordinates
+    
+    class Generator(nn.Module):
+        def __init__(self, noise_dim, condition_dim, output_dim):
+            super().__init__()
+            self.model = nn.Sequential(
+                nn.Linear(noise_dim + condition_dim, 512),
+                nn.ReLU(),
+                nn.Linear(512, 1024),
+                nn.ReLU(),
+                nn.Linear(1024, 512),
+                nn.ReLU(),
+                nn.Linear(512, output_dim),
+                nn.Sigmoid()
+            )
+        
+        def forward(self, noise, condition):
+            x = torch.cat([noise, condition], dim=1)
+            return self.model(x)
+    
+    print(f"Training CGAN with {len(positions)} position samples...")
+    
+    generator = Generator(noise_dim, condition_dim, output_dim).to(device)
+    optimizer = torch.optim.Adam(generator.parameters(), lr=0.001)
+    criterion = nn.MSELoss()
+    
+    # Create conditions (formation embeddings)
+    conditions = torch.randn(len(positions), condition_dim)
+    
+    # Flatten positions for training
+    positions_flat = torch.tensor(positions.reshape(-1, 22), dtype=torch.float32)
+    
+    for epoch in range(epochs):
+        generator.train()
+        total_loss = 0
+        
+        for i in range(len(positions)):
+            noise = torch.randn(1, noise_dim)
+            condition = conditions[i:i+1]
+            target = positions_flat[i:i+1]
+            
+            output = generator(noise, condition)
+            loss = criterion(output, target)
+            
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            
+            total_loss += loss.item()
+        
+        avg_loss = total_loss / len(positions)
+        print(f"Epoch {epoch+1}/{epochs} - Average Loss: {avg_loss:.4f}")
+    
+    torch.save(generator.state_dict(), save_path)
+    print(f"✅ CGAN Generator model saved to {save_path}")
+    print(f"📊 Trained on {len(positions)} position samples")
+    
+    return generator
