@@ -3,6 +3,11 @@ run = "streamlit run app.py"
 
 [nix]
 channel = "stable-24_05"
+packages = ["cairo", "ffmpeg-full", "freetype", "geckodriver", "ghostscript", "glibcLocales", "gobject-introspection", "gtk3", "libjpeg_turbo", "libpng", "pkg-config", "qhull", "tcl", "tk", "which"]
 
 [deployment]
 run = ["sh", "-c", "streamlit run app.py"]
+
+[[ports]]
+localPort = 8501
+externalPort = 80

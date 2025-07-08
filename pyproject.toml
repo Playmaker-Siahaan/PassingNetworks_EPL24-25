@@ -13,6 +13,7 @@ dependencies = [
     "scikit-learn>=1.7.0",
     "seaborn>=0.13.2",
     "selenium>=4.34.0",
+    "snowflake-connector-python>=3.16.0",
     "streamlit>=1.46.1",
     "torch>=2.7.1",
     "torchvision>=0.22.1",
