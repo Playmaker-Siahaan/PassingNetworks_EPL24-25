@@ -1,0 +1,58 @@
+import torch
+import pandas as pd
+import numpy as np
+import os
+
+def load_player_positions_from_csv(csv_path):
+    df = pd.read_csv(csv_path)
+    # Pastikan kolom 'x', 'y', dan 'match_id' ada
+    if not all(col in df.columns for col in ['x', 'y', 'match_id']):
+        raise ValueError("CSV harus memiliki kolom 'x', 'y', dan 'match_id'")
+    positions = []
+    for match_id, group in df.groupby('match_id'):
+        pos = group[['x', 'y']].values[:11]
+        if pos.shape == (11, 2):
+            positions.append(pos)
+    return np.array(positions)  # shape: (num_samples, 11, 2)
+
+def train_cgan_on_positions(positions, save_path="cgan_generator.pth", epochs=10):
+    import torch.nn as nn
+    device = torch.device("cpu")
+    noise_dim = 100
+    condition_dim = 64
+    output_dim = 22
+    class Generator(nn.Module):
+        def __init__(self, noise_dim, condition_dim, output_dim):
+            super().__init__()
+            self.model = nn.Sequential(
+                nn.Linear(noise_dim + condition_dim, 512),
+                nn.ReLU(),
+                nn.Linear(512, 1024),
+                nn.ReLU(),
+                nn.Linear(1024, 512),
+                nn.ReLU(),
+                nn.Linear(512, output_dim),
+                nn.Sigmoid()
+            )
+        def forward(self, noise, condition):
+            x = torch.cat([noise, condition], dim=1)
+            return self.model(x)
+    generator = Generator(noise_dim, condition_dim, output_dim).to(device)
+    optimizer = torch.optim.Adam(generator.parameters(), lr=0.001)
+    criterion = nn.MSELoss()
+    conditions = torch.zeros(len(positions), condition_dim)
+    positions_flat = torch.tensor(positions.reshape(-1, 22), dtype=torch.float32)
+    for epoch in range(epochs):
+        generator.train()
+        for i in range(len(positions)):
+            noise = torch.randn(1, noise_dim)
+            condition = conditions[i:i+1]
+            target = positions_flat[i:i+1]
+            output = generator(noise, condition)
+            loss = criterion(output, target)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+        print(f"Epoch {epoch+1}/{epochs} - Loss: {loss.item():.4f}")
+    torch.save(generator.state_dict(), save_path)
+    print(f"Model saved to {save_path}")
