@@ -1222,26 +1222,27 @@ def create_comprehensive_tactical_dashboard(home_team, away_team, match_id=None,
                    f'{height}%', ha='center', va='bottom', fontweight='bold', fontsize=11)
 
     # Add comprehensive explanations SESUAI DENGAN AI CGAN RESULTS
-    explanation_text = """
+    explanation_text = f"""
 PENJELASAN DETAIL KOMPONEN DASHBOARD TAKTIK BERDASARKAN AI CGAN GENERATOR:
 
 🤖 ANALISIS BERBASIS AI GENERATED PASSING NETWORKS (CGAN):
 
 1. PERFORMANCE RADAR (Panel Kiri Atas): Grafik radar yang menganalisis pola AI Generated Passing Networks. 
-   Area hijau menunjukkan kekuatan {} berdasarkan AI CGAN ultra strong connections (warna hijau terang), 
-   area magenta menunjukkan kekuatan {} dari medium connections (warna biru AI). Semakin luas area, 
-   semakin optimal pola passing yang dihasilkan AI dengan kreativitas {:.1f} dan gaya taktik {}.
+   Area hijau menunjukkan kekuatan {home_team} berdasarkan AI CGAN ultra strong connections (warna hijau terang), 
+   area magenta menunjukkan kekuatan {away_team} dari medium connections (warna biru AI). Semakin luas area, 
+   semakin optimal pola passing yang dihasilkan AI dengan kreativitas 1.0 dan gaya taktik Balanced.
 
 2. AKURASI POSISIONAL (Panel Tengah Atas): Analisis akurasi berdasarkan AI Generated Networks dengan 
    creative markers (titik putih) yang muncul saat kreativitas >1.5. Kiper (95%) mengikuti pola GK 
    dalam AI formasi, penyerang (78%) sesuai dengan forward positions yang dihasilkan AI CGAN generator.
 
 3. TOP 5 PLAYER INFLUENCE (Panel Kanan Atas): Pemain berpengaruh berdasarkan AI Enhanced Patterns: 
-   {} (Ultra Strong 20+), {} (Strong 15-19), {} (Medium 10-14), {} (Normal 7-9), dan {} (Weak 1-6). 
+   {players[0]} (Ultra Strong 20+), {players[1]} (Strong 15-19), {players[2]} (Medium 10-14), 
+   {players[3]} (Normal 7-9), dan {players[4]} (Weak 1-6). 
    Skor pengaruh mencerminkan thickness garis dalam AI Generated Networks dan curved paths yang dihasilkan.
 
-4. TREN PENGUASAAN TEMPORAL (Panel Kiri Bawah): Evolution berdasarkan AI CGAN dengan {} menunjukkan 
-   pola attacking bias dan {} menunjukkan counter-attack bias sesuai tactical style yang dipilih. 
+4. TREN PENGUASAAN TEMPORAL (Panel Kiri Bawah): Evolution berdasarkan AI CGAN dengan {home_team} menunjukkan 
+   pola attacking bias dan {away_team} menunjukkan counter-attack bias sesuai tactical style yang dipilih. 
    Grafik mengikuti AI innovation markers dan gradient effects dari passing networks generator.
 
 5. DISTRIBUSI FORMASI (Panel Tengah Bawah): Penggunaan formasi yang disesuaikan dengan AI Generator: 
@@ -1249,16 +1250,13 @@ PENJELASAN DETAIL KOMPONEN DASHBOARD TAKTIK BERDASARKAN AI CGAN GENERATOR:
    wing-back patterns, dan 4-2-3-1 (10%) dari CAM zones yang dihasilkan AI CGAN architecture.
 
 6. DISTRIBUSI PENDEKATAN (Panel Kanan Bawah): Gaya bermain berdasarkan AI Enhanced Patterns dengan 
-   {} menggunakan curved paths (40% ofensif) dan special effects untuk ultra strong connections, 
-   {} menggunakan innovation markers (25% ofensif) dan standard AI patterns sesuai creativity level.
+   {home_team} menggunakan curved paths (40% ofensif) dan special effects untuk ultra strong connections, 
+   {away_team} menggunakan innovation markers (25% ofensif) dan standard AI patterns sesuai creativity level.
 
 🎯 KORELASI AI CGAN: Semua metrik dashboard mengikuti hasil AI Generated Passing Networks dengan 
    warna hijau terang untuk ultra strong, biru untuk medium, orange untuk normal, dan titik putih 
-   untuk creative markers saat kreativitas mencapai {:.1f}.
-   """.format(home_team, away_team, creativity_level if 'creativity_level' in locals() else 1.0, 
-              tactical_style if 'tactical_style' in locals() else 'Balanced',
-              players[0], players[1], players[2], players[3], players[4], 
-              home_team, away_team, creativity_level if 'creativity_level' in locals() else 1.0)
+   untuk creative markers saat kreativitas mencapai 1.0.
+   """
 
     fig.text(0.02, 0.01, explanation_text, fontsize=10, fontweight='normal', color='black',
              bbox=dict(boxstyle="round,pad=0.8", facecolor='#f8f9fa', alpha=0.95, linewidth=2),
