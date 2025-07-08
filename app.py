@@ -1432,7 +1432,7 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
            bbox=dict(boxstyle="round,pad=0.6", facecolor='black', alpha=0.95, edgecolor='#DD0080', linewidth=3))
 
     # Add AI generation title - UKURAN DIPERBESAR
-    title = f'🤖 AI Generated Passing Networks (CGAN)\n{home_team} vs {away_team} | Style: {tactical_style} | Creativity: {creativity}'
+    title = f'AI Generated Passing Networks (CGAN)\n{home_team} vs {away_team} | Style: {tactical_style} | Creativity: {creativity}'
 
     ax.text(0.5, 0.78, title, ha='center', fontsize=20, fontweight='bold', color='white',
            bbox=dict(boxstyle="round,pad=0.8", facecolor='black', alpha=0.9, linewidth=3))
@@ -1440,11 +1440,11 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
     # AI Enhanced Patterns - Exact Color Legend - UKURAN DIPERBESAR
     from matplotlib.lines import Line2D
     legend_elements = [
-        Line2D([0], [0], color='#00FF00', linewidth=10, alpha=0.9, label='🔥 Ultra Strong (20+) + Efek Khusus'),
-        Line2D([0], [0], color='#00CC00', linewidth=8, alpha=0.8, label='💪 Strong (15-19) + Curves'),
-        Line2D([0], [0], color='#0099FF', linewidth=6, alpha=0.7, label='⚡ Medium (10-14) Standar'),
-        Line2D([0], [0], color='#FF9900', linewidth=5, alpha=0.7, label='📊 Normal (7-9) Dasar'),
-        Line2D([0], [0], color='#FF6600', linewidth=4, alpha=0.6, label='📉 Weak (1-6) Minimal')
+        Line2D([0], [0], color='#00FF00', linewidth=10, alpha=0.9, label='Ultra Strong (20+) + Efek Khusus', solid_capstyle='round'),
+        Line2D([0], [0], color='#00CC00', linewidth=8, alpha=0.8, label='Strong (15-19) + Curves', solid_capstyle='round'),
+        Line2D([0], [0], color='#0099FF', linewidth=6, alpha=0.7, label='Medium (10-14) Standar', solid_capstyle='round'),
+        Line2D([0], [0], color='#FF9900', linewidth=5, alpha=0.7, label='Normal (7-9) Dasar', solid_capstyle='round'),
+        Line2D([0], [0], color='#FF6600', linewidth=4, alpha=0.6, label='Weak (1-6) Minimal', solid_capstyle='round')
     ]
 
     legend = ax.legend(handles=legend_elements, loc='upper left', bbox_to_anchor=(0.02, 0.98), 
@@ -1455,8 +1455,8 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
 
     # Add team color indicators - UKURAN DIPERBESAR
     team_legend_elements = [
-        Line2D([0], [0], color='#00DD00', linewidth=10, alpha=0.8, label=f'{home_team}'),
-        Line2D([0], [0], color='#DD0080', linewidth=10, alpha=0.8, label=f'{away_team}')
+        Line2D([0], [0], color='#00DD00', linewidth=10, alpha=0.8, label=f'{home_team}', solid_capstyle='round'),
+        Line2D([0], [0], color='#DD0080', linewidth=10, alpha=0.8, label=f'{away_team}', solid_capstyle='round')
     ]
 
     team_legend = ax.legend(handles=team_legend_elements, loc='upper right', bbox_to_anchor=(0.98, 0.98),
@@ -2202,7 +2202,7 @@ def main():
                 creativity=creativity_level if 'creativity_level' in locals() else 1.0
             )
             st.pyplot(fig_main)
-            st.success("✅ AI telah menghasilkan passing networks baru menggunakan CGAN!")
+            st.success("✅ AI CGAN berhasil menghasilkan passing networks alternatif baru berdasarkan pembelajaran dari data asli Premier League 2024/2025. Visualisasi ini menunjukkan prediksi pola passing yang optimal untuk skenario pertandingan terbaik dengan parameter taktik yang telah ditentukan.")
             
         else:
             st.subheader("🌐 Jaringan Passing Lanjutan - Analisis CGAN")
