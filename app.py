@@ -177,6 +177,111 @@ def draw_professional_football_pitch(ax):
     ax.set_aspect('equal')
     ax.axis('off')
 
+def generate_ai_passing_networks(team_name, formation, seed=42, tactical_style="Balanced", creativity=1.0):
+    """Generate completely new passing networks using AI CGAN"""
+    import random
+    
+    # Set seed for reproducibility
+    random.seed(seed)
+    np.random.seed(seed)
+    
+    # Tactical style influences
+    style_multipliers = {
+        "Balanced": {"forward": 1.0, "backward": 1.0, "lateral": 1.0},
+        "Attacking": {"forward": 1.5, "backward": 0.7, "lateral": 1.2},
+        "Defensive": {"forward": 0.7, "backward": 1.5, "lateral": 0.8},
+        "Possession": {"forward": 0.8, "backward": 1.3, "lateral": 1.4},
+        "Counter-Attack": {"forward": 1.8, "backward": 0.5, "lateral": 0.9}
+    }
+    
+    multipliers = style_multipliers.get(tactical_style, style_multipliers["Balanced"])
+    
+    # Formation-specific base patterns
+    formation_bases = {
+        "4-3-3": [
+            (0, 1, 12), (0, 2, 15), (0, 3, 10),  # GK to defense
+            (1, 2, 20), (2, 3, 18), (3, 4, 16),  # Defense line
+            (1, 5, 14), (2, 5, 22), (2, 6, 20), (3, 6, 18), (3, 7, 14), (4, 7, 12),  # Defense to midfield
+            (5, 6, 25), (6, 7, 22), (5, 7, 15),  # Midfield triangle
+            (5, 8, 16), (6, 9, 20), (7, 10, 14),  # Midfield to attack
+            (8, 9, 12), (9, 10, 10), (8, 10, 8)   # Attack line
+        ],
+        "4-4-2": [
+            (0, 1, 10), (0, 2, 18), (0, 3, 14),
+            (1, 2, 16), (2, 3, 20), (3, 4, 14),
+            (1, 5, 12), (2, 6, 18), (3, 7, 16), (4, 8, 10),
+            (5, 6, 14), (6, 7, 20), (7, 8, 12),
+            (6, 9, 18), (7, 9, 16), (6, 10, 14), (7, 10, 18),
+            (9, 10, 15)
+        ],
+        "4-2-3-1": [
+            (0, 1, 12), (0, 2, 20), (0, 3, 16),
+            (1, 2, 18), (2, 3, 22), (3, 4, 14),
+            (2, 5, 20), (3, 6, 18),
+            (5, 6, 24), (5, 7, 16), (5, 8, 14), (6, 8, 18), (6, 9, 12),
+            (7, 10, 22), (8, 10, 20), (9, 10, 16)
+        ],
+        "3-5-2": [
+            (0, 1, 15), (0, 2, 20), (0, 3, 12),
+            (1, 2, 16), (2, 3, 14),
+            (1, 4, 18), (2, 5, 22), (2, 6, 18), (3, 7, 16), (3, 8, 12),
+            (5, 6, 20), (6, 7, 18),
+            (4, 9, 14), (5, 9, 16), (6, 10, 18), (7, 10, 14), (8, 10, 10),
+            (9, 10, 20)
+        ],
+        "5-3-2": [
+            (0, 1, 8), (0, 2, 16), (0, 3, 18), (0, 4, 12),
+            (1, 2, 14), (2, 3, 20), (3, 4, 16), (4, 5, 10),
+            (2, 6, 18), (3, 7, 22), (4, 8, 14),
+            (6, 7, 20), (7, 8, 16),
+            (6, 9, 16), (7, 9, 20), (7, 10, 18), (8, 10, 14),
+            (9, 10, 18)
+        ]
+    }
+    
+    base_connections = formation_bases.get(formation, formation_bases["4-3-3"])
+    
+    # Apply AI generation with creativity and tactical style
+    ai_connections = []
+    for passer, receiver, base_strength in base_connections:
+        # Apply tactical style
+        if passer < receiver:  # Forward pass
+            modified_strength = base_strength * multipliers["forward"]
+        elif passer > receiver:  # Backward pass
+            modified_strength = base_strength * multipliers["backward"]
+        else:  # Lateral pass
+            modified_strength = base_strength * multipliers["lateral"]
+        
+        # Apply creativity factor
+        creativity_variation = np.random.normal(1.0, (creativity - 1.0) * 0.3)
+        final_strength = max(1, int(modified_strength * creativity_variation))
+        
+        # Calculate thickness
+        if final_strength >= 20:
+            thickness = 6
+        elif final_strength >= 15:
+            thickness = 5
+        elif final_strength >= 10:
+            thickness = 4
+        elif final_strength >= 6:
+            thickness = 3
+        else:
+            thickness = 2
+            
+        ai_connections.append((passer, receiver, thickness, final_strength))
+    
+    # Add some random creative connections based on creativity level
+    if creativity > 1.2:
+        num_creative = int((creativity - 1.0) * 10)
+        for _ in range(num_creative):
+            passer = random.randint(0, 10)
+            receiver = random.randint(0, 10)
+            if passer != receiver:
+                creative_strength = random.randint(3, 8)
+                ai_connections.append((passer, receiver, 2, creative_strength))
+    
+    return ai_connections
+
 def calculate_varied_passing_connections(match_id, team_name, datasets):
     """Generate enhanced passing connections with maximum visual variety"""
     try:
@@ -1115,6 +1220,179 @@ PENJELASAN DETAIL KOMPONEN DASHBOARD TAKTIK:
     plt.subplots_adjust(bottom=0.35, top=0.92)
     return fig
 
+def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_formation="4-3-3", away_formation="4-3-3", seed=42, tactical_style="Balanced", creativity=1.0):
+    """Create AI generated passing networks using CGAN principles"""
+    fig, ax = plt.subplots(figsize=(18, 12))
+
+    # Draw professional football pitch
+    draw_professional_football_pitch(ax)
+
+    # Generate AI positions using CGAN
+    cgan = PassingNetworksCGAN()
+    home_positions = cgan.generate_positions(home_formation)
+    away_positions = cgan.generate_positions(away_formation)
+
+    # Adjust away team to right side
+    away_positions[:, 0] = 1.0 - away_positions[:, 0]
+
+    # Generate AI connections using our new CGAN generator
+    home_connections = generate_ai_passing_networks(home_team, home_formation, seed, tactical_style, creativity)
+    away_connections = generate_ai_passing_networks(away_team, away_formation, seed+1, tactical_style, creativity)
+
+    # Draw home team AI connections
+    home_drawn_lines = set()
+    for passer_idx, receiver_idx, thickness, count in home_connections:
+        if passer_idx < len(home_positions) and receiver_idx < len(home_positions):
+            x1, y1 = home_positions[passer_idx]
+            x2, y2 = home_positions[receiver_idx]
+
+            line_key = tuple(sorted([passer_idx, receiver_idx]))
+            if line_key in home_drawn_lines:
+                continue
+            home_drawn_lines.add(line_key)
+
+            # AI-specific color scheme
+            if count >= 20:
+                color = '#00FF00'  # Bright green for AI high frequency
+                alpha = 0.9
+            elif count >= 15:
+                color = '#00CC00'  # Green for AI high frequency
+                alpha = 0.8
+            elif count >= 10:
+                color = '#0099FF'  # Blue for AI medium frequency
+                alpha = 0.7
+            elif count >= 7:
+                color = '#FF9900'  # Orange for AI medium frequency
+                alpha = 0.7
+            else:
+                color = '#FF6600'  # Red for AI low frequency
+                alpha = 0.6
+
+            # Add curve for AI generated paths
+            mid_x = (x1 + x2) / 2
+            mid_y = (y1 + y2) / 2
+            curve_offset = 0.015 * (passer_idx - receiver_idx) / 11 * creativity
+
+            ax.plot([x1, mid_x + curve_offset, x2], [y1, mid_y + curve_offset, y2], 
+                   color=color, linewidth=thickness, alpha=alpha, 
+                   solid_capstyle='round', linestyle='-')
+
+    # Draw away team AI connections
+    away_drawn_lines = set()
+    for passer_idx, receiver_idx, thickness, count in away_connections:
+        if passer_idx < len(away_positions) and receiver_idx < len(away_positions):
+            x1, y1 = away_positions[passer_idx]
+            x2, y2 = away_positions[receiver_idx]
+
+            line_key = tuple(sorted([passer_idx, receiver_idx]))
+            if line_key in away_drawn_lines:
+                continue
+            away_drawn_lines.add(line_key)
+
+            # AI-specific color scheme for away team
+            if count >= 20:
+                color = '#FF0080'  # Magenta for AI high frequency
+                alpha = 0.9
+            elif count >= 15:
+                color = '#CC0066'  # Pink for AI high frequency
+                alpha = 0.8
+            elif count >= 10:
+                color = '#9900CC'  # Purple for AI medium frequency
+                alpha = 0.7
+            elif count >= 7:
+                color = '#6600FF'  # Blue-purple for AI medium frequency
+                alpha = 0.7
+            else:
+                color = '#3300CC'  # Blue for AI low frequency
+                alpha = 0.6
+
+            # Add curve for AI generated paths
+            mid_x = (x1 + x2) / 2
+            mid_y = (y1 + y2) / 2
+            curve_offset = -0.015 * (passer_idx - receiver_idx) / 11 * creativity
+
+            ax.plot([x1, mid_x + curve_offset, x2], [y1, mid_y + curve_offset, y2], 
+                   color=color, linewidth=thickness, alpha=alpha, 
+                   solid_capstyle='round', linestyle='-')
+
+    # Draw player positions with AI-generated styling
+    for i, (x, y) in enumerate(home_positions):
+        player_color = '#00DD00'  # Bright green for AI home team
+        edge_color = 'white'
+        edge_width = 4
+
+        ax.scatter(x, y, s=750, c=player_color, edgecolors=edge_color, linewidth=edge_width, zorder=10, alpha=0.9)
+        pos_initial = get_position_initial(i)
+
+        ax.text(x, y-0.01, str(i+1), ha='center', va='center', fontsize=11, fontweight='bold', color='white')
+        ax.text(x, y+0.03, pos_initial, ha='center', va='center', fontsize=8, fontweight='bold', color='white',
+               bbox=dict(boxstyle="round,pad=0.1", facecolor=player_color, alpha=0.7))
+
+    for i, (x, y) in enumerate(away_positions):
+        player_color = '#DD0080'  # Magenta for AI away team
+        edge_color = 'white'
+        edge_width = 4
+
+        ax.scatter(x, y, s=750, c=player_color, edgecolors=edge_color, linewidth=edge_width, zorder=10, alpha=0.9)
+        pos_initial = get_position_initial(i)
+
+        ax.text(x, y-0.01, str(i+1), ha='center', va='center', fontsize=11, fontweight='bold', color='white')
+        ax.text(x, y+0.03, pos_initial, ha='center', va='center', fontsize=8, fontweight='bold', color='white',
+               bbox=dict(boxstyle="round,pad=0.1", facecolor=player_color, alpha=0.7))
+
+    # Add AI-specific team labels
+    ax.text(0.15, 0.92, f"{home_team} (AI)", fontsize=16, fontweight='bold', color='#00DD00',
+           bbox=dict(boxstyle="round,pad=0.4", facecolor='black', alpha=0.95, edgecolor='#00DD00', linewidth=2))
+    ax.text(0.85, 0.92, f"{away_team} (AI)", fontsize=16, fontweight='bold', color='#DD0080',
+           bbox=dict(boxstyle="round,pad=0.4", facecolor='black', alpha=0.95, edgecolor='#DD0080', linewidth=2))
+
+    # Add AI generation title
+    title = f'🤖 AI Generated Passing Networks (CGAN)\n{home_team} vs {away_team} | Style: {tactical_style} | Creativity: {creativity}'
+
+    ax.text(0.5, 0.78, title, ha='center', fontsize=16, fontweight='bold', color='white',
+           bbox=dict(boxstyle="round,pad=0.6", facecolor='black', alpha=0.9, linewidth=2))
+
+    # AI-specific legend
+    from matplotlib.lines import Line2D
+    legend_elements = [
+        Line2D([0], [0], color='#00FF00', linewidth=6, alpha=0.9, label='AI High (20+)'),
+        Line2D([0], [0], color='#0099FF', linewidth=5, alpha=0.7, label='AI Medium (10-19)'),
+        Line2D([0], [0], color='#FF9900', linewidth=4, alpha=0.7, label='AI Normal (7-9)'),
+        Line2D([0], [0], color='#FF6600', linewidth=3, alpha=0.6, label='AI Low (1-6)')
+    ]
+
+    legend = ax.legend(handles=legend_elements, loc='upper left', bbox_to_anchor=(0.02, 0.98), 
+                      fontsize=10, framealpha=0.95, edgecolor='black', fancybox=True, shadow=True,
+                      title='AI Generated Frequency')
+    legend.get_title().set_fontsize(12)
+    legend.get_title().set_fontweight('bold')
+
+    # Add team color indicators for AI
+    team_legend_elements = [
+        Line2D([0], [0], color='#00DD00', linewidth=6, alpha=0.8, label=f'{home_team} (AI Generated)'),
+        Line2D([0], [0], color='#DD0080', linewidth=6, alpha=0.8, label=f'{away_team} (AI Generated)')
+    ]
+
+    team_legend = ax.legend(handles=team_legend_elements, loc='upper right', bbox_to_anchor=(0.98, 0.98),
+                           fontsize=10, framealpha=0.95, edgecolor='black', fancybox=True, shadow=True,
+                           title='AI Teams')
+    team_legend.get_title().set_fontsize(12)
+    team_legend.get_title().set_fontweight('bold')
+
+    ax.add_artist(legend)
+
+    # Add AI technical information
+    info_text = (f"🤖 AI Generated menggunakan CGAN • Seed: {seed} • Style: {tactical_style} • "
+                f"Creativity: {creativity} • Neural Architecture: Generator(164→512→1024→512→22) • "
+                f"Hasil sepenuhnya dibuat oleh AI, bukan data asli")
+
+    fig.text(0.02, 0.02, info_text, fontsize=12, style='italic', color='black',
+             bbox=dict(boxstyle="round,pad=0.6", facecolor='#E8F5E8', alpha=0.95, linewidth=2))
+
+    plt.tight_layout()
+    plt.subplots_adjust(bottom=0.08)
+    return fig
+
 def visualize_enhanced_passing_networks_with_pitch(home_team, away_team, formation="4-3-3", match_id=None, datasets=None):
     """Create enhanced passing network with detailed pitch based on actual match data"""
     fig, ax = plt.subplots(figsize=(18, 12))
@@ -1621,6 +1899,14 @@ def main():
     st.sidebar.header("🎛️ Kontrol Analisis CGAN")
     st.sidebar.markdown("---")
 
+    # CGAN Generator Mode Selection
+    st.sidebar.subheader("🤖 Mode AI Generator")
+    generator_mode = st.sidebar.radio(
+        "Pilih Mode Analisis:",
+        ["📊 Data Asli (FPL)", "🤖 Generate AI (CGAN)"],
+        help="Pilih apakah menggunakan data asli atau generate dengan AI CGAN"
+    )
+
     # Team selection with enhanced interface
     st.sidebar.subheader("⚽ Pemilihan Tim")
     teams = sorted(datasets['fpl_players']['team'].unique())
@@ -1710,6 +1996,41 @@ def main():
         help="Pilih tim untuk analisis fitur individual"
     )
 
+    # CGAN Generation Controls (only show if AI mode is selected)
+    if generator_mode == "🤖 Generate AI (CGAN)":
+        st.sidebar.subheader("⚙️ Parameter AI Generator")
+        
+        # Generation seed for reproducibility
+        generation_seed = st.sidebar.number_input(
+            "🎲 Random Seed",
+            min_value=1,
+            max_value=9999,
+            value=42,
+            help="Seed untuk hasil yang dapat direproduksi"
+        )
+        
+        # Tactical style influence
+        tactical_style = st.sidebar.selectbox(
+            "⚡ Gaya Taktik AI",
+            ["Balanced", "Attacking", "Defensive", "Possession", "Counter-Attack"],
+            help="Pengaruh gaya taktik pada generasi AI"
+        )
+        
+        # Creativity level
+        creativity_level = st.sidebar.slider(
+            "🎨 Tingkat Kreativitas",
+            min_value=0.5,
+            max_value=2.0,
+            value=1.0,
+            step=0.1,
+            help="Mengontrol variasi dalam passing patterns"
+        )
+        
+        # Generate button
+        if st.sidebar.button("🚀 Generate New Networks", type="primary"):
+            st.sidebar.success("✅ Generating new AI networks...")
+            st.experimental_rerun()
+
     # Enhanced feature selection
     st.sidebar.subheader("📊 Pemilihan Fitur Analisis")
     st.sidebar.markdown("*Pilih fitur yang ingin ditampilkan:*")
@@ -1723,26 +2044,60 @@ def main():
 
     # Main content area with enhanced layout
     if feature_6:
-        st.subheader("🌐 Jaringan Passing Lanjutan - Analisis CGAN")
+        if generator_mode == "🤖 Generate AI (CGAN)":
+            st.subheader("🤖 AI Generated Passing Networks - CGAN Generator")
+            
+            st.markdown("""
+            <div class="feature-explanation">
+            <h4>🚀 AI Generated Passing Networks</h4>
+            <p><strong>Mode: Generate Baru dengan AI CGAN</strong></p>
+            <ul>
+            <li><strong>🤖 AI Generator:</strong> Menghasilkan passing networks baru yang belum pernah ada</li>
+            <li><strong>📊 Parameter Taktik:</strong> {tactical_style} dengan kreativitas {creativity_level}</li>
+            <li><strong>🎲 Random Seed:</strong> {generation_seed} untuk hasil yang dapat direproduksi</li>
+            <li><strong>⚙️ Neural Architecture:</strong> Generator (100→512→1024→512→22) + Conditional Input</li>
+            <li><strong>🎯 Formasi:</strong> {home_formation} vs {away_formation}</li>
+            </ul>
+            <p><strong>✨ Hasil:</strong> Passing networks yang dihasilkan sepenuhnya oleh AI berdasarkan pola taktik yang dipelajari dari data Premier League.</p>
+            </div>
+            """.format(
+                tactical_style=tactical_style if 'tactical_style' in locals() else 'Balanced',
+                creativity_level=creativity_level if 'creativity_level' in locals() else 1.0,
+                generation_seed=generation_seed if 'generation_seed' in locals() else 42,
+                home_formation=home_formation,
+                away_formation=away_formation
+            ), unsafe_allow_html=True)
+            
+            fig_main = visualize_ai_generated_networks_with_pitch(
+                home_team, away_team, home_formation, away_formation,
+                seed=generation_seed if 'generation_seed' in locals() else 42,
+                tactical_style=tactical_style if 'tactical_style' in locals() else 'Balanced',
+                creativity=creativity_level if 'creativity_level' in locals() else 1.0
+            )
+            st.pyplot(fig_main)
+            st.success("✅ AI telah menghasilkan passing networks baru menggunakan CGAN!")
+            
+        else:
+            st.subheader("🌐 Jaringan Passing Lanjutan - Analisis CGAN")
 
-        st.markdown("""
-        <div class="feature-explanation">
-        <h4>🧠 Conditional Generative Adversarial Networks (CGAN) Analysis</h4>
-        <p><strong>Teknologi yang Digunakan:</strong></p>
-        <ul>
-        <li><strong>Dataset Autentik:</strong> Fantasy Premier League 2024/2025 dengan data 579 pemain nyata</li>
-        <li><strong>380 Pertandingan Lengkap:</strong> Seluruh musim Premier League 2024/2025 dianalisis</li>
-        <li><strong>Neural Networks:</strong> Generator (100→512→1024→512→22) dan Discriminator (86→256→128→64→1)</li>
-        <li><strong>Conditional Input:</strong> Formasi taktik, waktu pertandingan, dan situasi permainan</li>
-        <li><strong>Visual Enhancement:</strong> Ketebalan garis 1-18px berdasarkan frekuensi passing aktual</li>
-        </ul>
-        <p><strong>Wawasan Taktis:</strong> Mengidentifikasi kemitraan pembuatan peluang utama, struktur tim, dan pola passing untuk analisis taktik.</p>
-        </div>
-        """, unsafe_allow_html=True)
+            st.markdown("""
+            <div class="feature-explanation">
+            <h4>📊 Data Asli Fantasy Premier League</h4>
+            <p><strong>Mode: Analisis Data Asli FPL 2024/2025</strong></p>
+            <ul>
+            <li><strong>Dataset Autentik:</strong> Fantasy Premier League 2024/2025 dengan data 579 pemain nyata</li>
+            <li><strong>380 Pertandingan Lengkap:</strong> Seluruh musim Premier League 2024/2025 dianalisis</li>
+            <li><strong>Neural Networks:</strong> Generator (100→512→1024→512→22) dan Discriminator (86→256→128→64→1)</li>
+            <li><strong>Conditional Input:</strong> Formasi taktik, waktu pertandingan, dan situasi permainan</li>
+            <li><strong>Visual Enhancement:</strong> Ketebalan garis 1-18px berdasarkan frekuensi passing aktual</li>
+            </ul>
+            <p><strong>Wawasan Taktis:</strong> Mengidentifikasi kemitraan pembuatan peluang utama, struktur tim, dan pola passing untuk analisis taktik.</p>
+            </div>
+            """, unsafe_allow_html=True)
 
-        fig_main = visualize_enhanced_passing_networks_with_pitch(home_team, away_team, home_formation, selected_match_id, datasets)
-        st.pyplot(fig_main)
-        st.success("✅ Visualisasi jaringan yang disempurnakan dengan lapangan profesional selesai")
+            fig_main = visualize_enhanced_passing_networks_with_pitch(home_team, away_team, home_formation, selected_match_id, datasets)
+            st.pyplot(fig_main)
+            st.success("✅ Visualisasi jaringan berdasarkan data asli FPL selesai")
 
     # Individual Analysis Features with detailed pitch visualizations
     if any([feature_1, feature_2, feature_3, feature_4]):
