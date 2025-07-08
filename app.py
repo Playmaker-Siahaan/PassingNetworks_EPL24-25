@@ -484,7 +484,7 @@ def calculate_synthetic_connections(num_players):
 
     return connections
 
-def create_enhanced_passing_combinations_chart(team_name, match_id=None, datasets=None, formation="4-3-3"):
+def create_enhanced_passing_combinations_chart(team_name, match_id=None, datasets=None, formation="4-3-3", ai_mode=False):
     """Create enhanced passing combinations chart based on FPL player performance data with match-specific variations"""
     combinations = {}
 
@@ -590,14 +590,24 @@ def create_enhanced_passing_combinations_chart(team_name, match_id=None, dataset
     combo_names = [combo[0] for combo in top_combinations]
     combo_values = [combo[1] for combo in top_combinations]
 
-    # Create horizontal bar chart with formation-specific colors
-    formation_colors = {
-        "4-3-3": ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57', '#FF9FF3', '#54A0FF', '#5F27CD', '#00D2D3', '#FF9F43'],
-        "4-4-2": ['#FF5722', '#8BC34A', '#2196F3', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#795548', '#607D8B', '#E91E63'],
-        "4-2-3-1": ['#F44336', '#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#00BCD4', '#FFEB3B', '#795548', '#9E9E9E', '#E91E63'],
-        "3-5-2": ['#E91E63', '#4CAF50', '#2196F3', '#FF5722', '#673AB7', '#00BCD4', '#FFC107', '#795548', '#607D8B', '#FF9800'],
-        "5-3-2": ['#9C27B0', '#4CAF50', '#2196F3', '#FF5722', '#FF9800', '#00BCD4', '#FFEB3B', '#795548', '#9E9E9E', '#E91E63']
-    }
+    # AI Enhanced Patterns - Color scheme matching AI Generated Networks
+    if ai_mode:
+        formation_colors = {
+            "4-3-3": ['#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600', '#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600'],
+            "4-4-2": ['#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600', '#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600'],
+            "4-2-3-1": ['#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600', '#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600'],
+            "3-5-2": ['#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600', '#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600'],
+            "5-3-2": ['#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600', '#00FF00', '#00CC00', '#0099FF', '#FF9900', '#FF6600']
+        }
+    else:
+        # Original colors for non-AI mode
+        formation_colors = {
+            "4-3-3": ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57', '#FF9FF3', '#54A0FF', '#5F27CD', '#00D2D3', '#FF9F43'],
+            "4-4-2": ['#FF5722', '#8BC34A', '#2196F3', '#FF9800', '#9C27B0', '#00BCD4', '#FFC107', '#795548', '#607D8B', '#E91E63'],
+            "4-2-3-1": ['#F44336', '#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#00BCD4', '#FFEB3B', '#795548', '#9E9E9E', '#E91E63'],
+            "3-5-2": ['#E91E63', '#4CAF50', '#2196F3', '#FF5722', '#673AB7', '#00BCD4', '#FFC107', '#795548', '#607D8B', '#FF9800'],
+            "5-3-2": ['#9C27B0', '#4CAF50', '#2196F3', '#FF5722', '#FF9800', '#00BCD4', '#FFEB3B', '#795548', '#9E9E9E', '#E91E63']
+        }
     
     colors = formation_colors.get(formation, formation_colors["4-3-3"])
     color_cycle = colors * (len(combo_names) // len(colors) + 1)
@@ -1281,21 +1291,21 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
                 continue
             home_drawn_lines.add(line_key)
 
-            # AI-specific color scheme
+            # AI Enhanced Patterns - Exact Color Matching
             if count >= 20:
-                color = '#00FF00'  # Bright green for AI high frequency
+                color = '#00FF00'  # Ultra Strong - Bright Green
                 alpha = 0.9
             elif count >= 15:
-                color = '#00CC00'  # Green for AI high frequency
+                color = '#00CC00'  # Strong - Green  
                 alpha = 0.8
             elif count >= 10:
-                color = '#0099FF'  # Blue for AI medium frequency
+                color = '#0099FF'  # Medium - Blue
                 alpha = 0.7
             elif count >= 7:
-                color = '#FF9900'  # Orange for AI medium frequency
+                color = '#FF9900'  # Normal - Orange
                 alpha = 0.7
             else:
-                color = '#FF6600'  # Red for AI low frequency
+                color = '#FF6600'  # Weak - Red-Orange
                 alpha = 0.6
 
             # Add AI-specific visual effects
@@ -1336,21 +1346,21 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
                 continue
             away_drawn_lines.add(line_key)
 
-            # AI-specific color scheme for away team
+            # AI Enhanced Patterns - Away Team (Same colors, different intensity)
             if count >= 20:
-                color = '#FF0080'  # Magenta for AI high frequency
+                color = '#00FF00'  # Ultra Strong - Bright Green
                 alpha = 0.9
             elif count >= 15:
-                color = '#CC0066'  # Pink for AI high frequency
+                color = '#00CC00'  # Strong - Green
                 alpha = 0.8
             elif count >= 10:
-                color = '#9900CC'  # Purple for AI medium frequency
+                color = '#0099FF'  # Medium - Blue
                 alpha = 0.7
             elif count >= 7:
-                color = '#6600FF'  # Blue-purple for AI medium frequency
+                color = '#FF9900'  # Normal - Orange
                 alpha = 0.7
             else:
-                color = '#3300CC'  # Blue for AI low frequency
+                color = '#FF6600'  # Weak - Red-Orange
                 alpha = 0.6
 
             # Add AI-specific visual effects for away team
@@ -1416,14 +1426,14 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
     ax.text(0.5, 0.78, title, ha='center', fontsize=16, fontweight='bold', color='white',
            bbox=dict(boxstyle="round,pad=0.6", facecolor='black', alpha=0.9, linewidth=2))
 
-    # AI-specific legend with unique visual indicators
+    # AI Enhanced Patterns - Exact Color Legend
     from matplotlib.lines import Line2D
     legend_elements = [
-        Line2D([0], [0], color='#00FF00', linewidth=6, alpha=0.9, label='Ultra Strong (20+) + Effects'),
-        Line2D([0], [0], color='#00CC00', linewidth=5, alpha=0.8, label='Strong (15-19) + Curves'),
-        Line2D([0], [0], color='#0099FF', linewidth=4, alpha=0.7, label='Medium (10-14)'),
-        Line2D([0], [0], color='#FF9900', linewidth=3, alpha=0.7, label='Normal (7-9)'),
-        Line2D([0], [0], color='#FF6600', linewidth=2, alpha=0.6, label='Weak (1-6)')
+        Line2D([0], [0], color='#00FF00', linewidth=6, alpha=0.9, label='🔥 Ultra Strong (20+) + Efek Khusus'),
+        Line2D([0], [0], color='#00CC00', linewidth=5, alpha=0.8, label='💪 Strong (15-19) + Curves'),
+        Line2D([0], [0], color='#0099FF', linewidth=4, alpha=0.7, label='⚡ Medium (10-14) Standar'),
+        Line2D([0], [0], color='#FF9900', linewidth=3, alpha=0.7, label='📊 Normal (7-9) Dasar'),
+        Line2D([0], [0], color='#FF6600', linewidth=2, alpha=0.6, label='📉 Weak (1-6) Minimal')
     ]
 
     legend = ax.legend(handles=legend_elements, loc='upper left', bbox_to_anchor=(0.02, 0.98), 
@@ -1446,19 +1456,22 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
 
     ax.add_artist(legend)
 
-    # Add enhanced AI technical information
+    # Add enhanced AI technical information with white dots explanation
     unique_features = []
+    creativity_explanation = ""
+    
     if creativity > 1.5:
-        unique_features.append("Creative Markers")
+        unique_features.append("⭕ Creative Markers (Titik Putih)")
+        creativity_explanation = f" • 🔍 TITIK PUTIH: Muncul pada kreativitas {creativity:.1f} > 1.5, menandai koneksi inovatif yang dihasilkan AI untuk passing tak terduga namun efektif"
     if tactical_style != "Balanced":
-        unique_features.append(f"{tactical_style} Patterns")
+        unique_features.append(f"⚡ {tactical_style} Patterns")
     
     features_text = f" + {', '.join(unique_features)}" if unique_features else ""
     
     info_text = (f"🤖 AI Generated dengan CGAN Enhanced • Seed: {seed} • Style: {tactical_style} • "
-                f"Creativity: {creativity}{features_text} • "
-                f"Fitur Unik: Curved Paths, Gradient Effects, Innovation Markers • "
-                f"Diferensiasi: Visual Effects, Tactical Patterns, Creative Connections")
+                f"Creativity: {creativity}{features_text}{creativity_explanation} • "
+                f"🎯 Fitur Visual: Curved Paths (lengkungan), Gradient Effects (efek gradien), Innovation Markers (penanda inovasi) • "
+                f"🧠 AI menghasilkan passing networks baru berdasarkan pembelajaran dari 380 pertandingan Premier League")
 
     fig.text(0.02, 0.02, info_text, fontsize=11, style='italic', color='black',
              bbox=dict(boxstyle="round,pad=0.6", facecolor='#E8F5E8', alpha=0.95, linewidth=2))
@@ -2074,20 +2087,40 @@ def main():
     if generator_mode == "🤖 Generate AI (CGAN)":
         st.sidebar.subheader("⚙️ Parameter AI Generator")
         
+        # Add detailed explanation
+        st.sidebar.markdown("""
+        **📖 Panduan Penggunaan Parameter AI:**
+        
+        **🎲 Random Seed:** Angka kontrol untuk menghasilkan pola yang konsisten. Seed yang sama = hasil yang sama.
+        
+        **⚡ Gaya Taktik AI:** 
+        - **Balanced:** Pola seimbang antara serangan dan bertahan
+        - **Attacking:** Lebih banyak passing ke depan dan sayap
+        - **Defensive:** Passing pendek dan build-up dari belakang
+        - **Possession:** Passing lateral dan kontrol bola
+        - **Counter-Attack:** Passing langsung dan cepat
+        
+        **🎨 Kreativitas:** Seberapa unik dan variatif passing patterns
+        - **0.5-0.9:** Konservatif (pola standar)
+        - **1.0:** Seimbang (default)
+        - **1.1-1.5:** Kreatif (variasi lebih)
+        - **1.6-2.0:** Sangat kreatif (pola unik + titik putih)
+        """)
+        
         # Generation seed for reproducibility
         generation_seed = st.sidebar.number_input(
             "🎲 Random Seed",
             min_value=1,
             max_value=9999,
             value=42,
-            help="Seed untuk hasil yang dapat direproduksi"
+            help="Kontrol reproduktibilitas: seed yang sama menghasilkan pola yang sama"
         )
         
         # Tactical style influence
         tactical_style = st.sidebar.selectbox(
             "⚡ Gaya Taktik AI",
             ["Balanced", "Attacking", "Defensive", "Possession", "Counter-Attack"],
-            help="Pengaruh gaya taktik pada generasi AI"
+            help="Menentukan karakter passing: Attacking = lebih maju, Defensive = lebih aman"
         )
         
         # Creativity level
@@ -2097,8 +2130,17 @@ def main():
             max_value=2.0,
             value=1.0,
             step=0.1,
-            help="Mengontrol variasi dalam passing patterns"
+            help="1.0 = standar, >1.5 = munculkan titik putih kreativitas, <1.0 = konservatif"
         )
+        
+        # Visual indicators explanation
+        st.sidebar.markdown("""
+        **🔍 Indikator Visual:**
+        - **Garis Tebal Hijau:** Ultra strong connections
+        - **Garis Biru:** Medium connections  
+        - **Garis Orange:** Normal connections
+        - **⭕ Titik Putih:** Muncul saat kreativitas >1.5, menandai koneksi inovatif AI
+        """)
         
         # Generate button
         if st.sidebar.button("🚀 Generate New Networks", type="primary"):
@@ -2193,7 +2235,8 @@ def main():
                     Nilai tinggi menunjukkan kemitraan yang kuat dan koneksi taktis dalam struktur tim. Setiap formasi memiliki pola yang berbeda.</p>
                     </div>
                     """, unsafe_allow_html=True)
-                    fig_combo = create_enhanced_passing_combinations_chart(analysis_team, selected_match_id, datasets, analysis_formation)
+                    ai_mode = (generator_mode == "🤖 Generate AI (CGAN)")
+                    fig_combo = create_enhanced_passing_combinations_chart(analysis_team, selected_match_id, datasets, analysis_formation, ai_mode)
                     st.pyplot(fig_combo)
 
             # Feature 2: Shot Prediction
