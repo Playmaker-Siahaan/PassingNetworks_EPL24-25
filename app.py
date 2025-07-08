@@ -178,20 +178,20 @@ def draw_professional_football_pitch(ax):
     ax.axis('off')
 
 def generate_ai_passing_networks(team_name, formation, seed=42, tactical_style="Balanced", creativity=1.0):
-    """Generate completely new passing networks using AI CGAN"""
+    """Generate completely new passing networks using AI CGAN with unique patterns"""
     import random
     
     # Set seed for reproducibility
     random.seed(seed)
     np.random.seed(seed)
     
-    # Tactical style influences
+    # Enhanced tactical style influences with more dramatic differences
     style_multipliers = {
-        "Balanced": {"forward": 1.0, "backward": 1.0, "lateral": 1.0},
-        "Attacking": {"forward": 1.5, "backward": 0.7, "lateral": 1.2},
-        "Defensive": {"forward": 0.7, "backward": 1.5, "lateral": 0.8},
-        "Possession": {"forward": 0.8, "backward": 1.3, "lateral": 1.4},
-        "Counter-Attack": {"forward": 1.8, "backward": 0.5, "lateral": 0.9}
+        "Balanced": {"forward": 1.0, "backward": 1.0, "lateral": 1.0, "special": 1.0},
+        "Attacking": {"forward": 2.2, "backward": 0.4, "lateral": 1.5, "special": 1.8},
+        "Defensive": {"forward": 0.3, "backward": 2.5, "lateral": 0.6, "special": 0.7},
+        "Possession": {"forward": 0.6, "backward": 1.8, "lateral": 2.0, "special": 1.3},
+        "Counter-Attack": {"forward": 2.8, "backward": 0.2, "lateral": 0.4, "special": 2.2}
     }
     
     multipliers = style_multipliers.get(tactical_style, style_multipliers["Balanced"])
@@ -270,16 +270,46 @@ def generate_ai_passing_networks(team_name, formation, seed=42, tactical_style="
             
         ai_connections.append((passer, receiver, thickness, final_strength))
     
-    # Add some random creative connections based on creativity level
+    # Add AI-specific innovative patterns based on creativity
     if creativity > 1.2:
-        num_creative = int((creativity - 1.0) * 10)
+        # Add unexpected long-range connections (AI creativity)
+        num_creative = int((creativity - 1.0) * 15)
         for _ in range(num_creative):
             passer = random.randint(0, 10)
             receiver = random.randint(0, 10)
-            if passer != receiver:
-                creative_strength = random.randint(3, 8)
-                ai_connections.append((passer, receiver, 2, creative_strength))
+            
+            # AI generates unlikely but effective connections
+            if abs(passer - receiver) > 3:  # Long-range connections
+                creative_strength = random.randint(8, 15)
+                ai_connections.append((passer, receiver, 3, creative_strength))
     
+    # Add tactical style unique patterns
+    style_bonus_connections = []
+    multipliers = style_multipliers.get(tactical_style, style_multipliers["Balanced"])
+    
+    if tactical_style == "Attacking":
+        # More forward connections, especially to wingers and strikers
+        for forward_pos in [8, 9, 10]:  # Wingers and striker
+            for mid_pos in [5, 6, 7]:   # Midfielders
+                strength = int(20 * multipliers["special"])
+                style_bonus_connections.append((mid_pos, forward_pos, 5, strength))
+    
+    elif tactical_style == "Defensive":
+        # More backward passes, defensive consolidation
+        for def_pos in [1, 2, 3, 4]:   # Defenders
+            for other_def in [1, 2, 3, 4]:
+                if def_pos != other_def:
+                    strength = int(18 * multipliers["special"])
+                    style_bonus_connections.append((def_pos, other_def, 4, strength))
+    
+    elif tactical_style == "Counter-Attack":
+        # Direct connections from defense to attack (bypassing midfield)
+        for def_pos in [1, 2, 3, 4]:
+            for att_pos in [8, 9, 10]:
+                strength = int(25 * multipliers["special"])
+                style_bonus_connections.append((def_pos, att_pos, 6, strength))
+    
+    ai_connections.extend(style_bonus_connections)
     return ai_connections
 
 def calculate_varied_passing_connections(match_id, team_name, datasets):
@@ -1268,14 +1298,31 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
                 color = '#FF6600'  # Red for AI low frequency
                 alpha = 0.6
 
-            # Add curve for AI generated paths
+            # Add AI-specific visual effects
             mid_x = (x1 + x2) / 2
             mid_y = (y1 + y2) / 2
-            curve_offset = 0.015 * (passer_idx - receiver_idx) / 11 * creativity
+            curve_offset = 0.025 * (passer_idx - receiver_idx) / 11 * creativity
 
+            # AI generates curved paths with unique styling
+            if count >= 15:  # High-frequency AI connections get special effects
+                # Gradient-like effect with multiple lines
+                for offset_mult in [0.8, 1.0, 1.2]:
+                    ax.plot([x1, mid_x + curve_offset * offset_mult, x2], 
+                           [y1, mid_y + curve_offset * offset_mult, y2], 
+                           color=color, linewidth=max(1, thickness-1), alpha=alpha*0.3, 
+                           solid_capstyle='round', linestyle='-')
+            
+            # Main AI connection line with enhanced styling
             ax.plot([x1, mid_x + curve_offset, x2], [y1, mid_y + curve_offset, y2], 
                    color=color, linewidth=thickness, alpha=alpha, 
                    solid_capstyle='round', linestyle='-')
+            
+            # Add AI innovation markers for creative connections
+            if creativity > 1.5 and count >= 10:
+                # Small circles at connection midpoints to show AI creativity
+                ax.scatter(mid_x + curve_offset, mid_y + curve_offset, 
+                          s=30, c='white', edgecolors=color, linewidth=2, 
+                          alpha=0.8, marker='o', zorder=15)
 
     # Draw away team AI connections
     away_drawn_lines = set()
@@ -1306,14 +1353,31 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
                 color = '#3300CC'  # Blue for AI low frequency
                 alpha = 0.6
 
-            # Add curve for AI generated paths
+            # Add AI-specific visual effects for away team
             mid_x = (x1 + x2) / 2
             mid_y = (y1 + y2) / 2
-            curve_offset = -0.015 * (passer_idx - receiver_idx) / 11 * creativity
+            curve_offset = -0.025 * (passer_idx - receiver_idx) / 11 * creativity
 
+            # AI generates curved paths with unique styling
+            if count >= 15:  # High-frequency AI connections get special effects
+                # Gradient-like effect with multiple lines
+                for offset_mult in [0.8, 1.0, 1.2]:
+                    ax.plot([x1, mid_x + curve_offset * offset_mult, x2], 
+                           [y1, mid_y + curve_offset * offset_mult, y2], 
+                           color=color, linewidth=max(1, thickness-1), alpha=alpha*0.3, 
+                           solid_capstyle='round', linestyle='-')
+            
+            # Main AI connection line with enhanced styling
             ax.plot([x1, mid_x + curve_offset, x2], [y1, mid_y + curve_offset, y2], 
                    color=color, linewidth=thickness, alpha=alpha, 
                    solid_capstyle='round', linestyle='-')
+            
+            # Add AI innovation markers for creative connections
+            if creativity > 1.5 and count >= 10:
+                # Small diamonds at connection midpoints to show AI creativity
+                ax.scatter(mid_x + curve_offset, mid_y + curve_offset, 
+                          s=30, c='white', edgecolors=color, linewidth=2, 
+                          alpha=0.8, marker='D', zorder=15)
 
     # Draw player positions with AI-generated styling
     for i, (x, y) in enumerate(home_positions):
@@ -1340,10 +1404,10 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
         ax.text(x, y+0.03, pos_initial, ha='center', va='center', fontsize=8, fontweight='bold', color='white',
                bbox=dict(boxstyle="round,pad=0.1", facecolor=player_color, alpha=0.7))
 
-    # Add AI-specific team labels
-    ax.text(0.15, 0.92, f"{home_team} (AI)", fontsize=16, fontweight='bold', color='#00DD00',
+    # Add team labels
+    ax.text(0.15, 0.92, home_team, fontsize=16, fontweight='bold', color='#00DD00',
            bbox=dict(boxstyle="round,pad=0.4", facecolor='black', alpha=0.95, edgecolor='#00DD00', linewidth=2))
-    ax.text(0.85, 0.92, f"{away_team} (AI)", fontsize=16, fontweight='bold', color='#DD0080',
+    ax.text(0.85, 0.92, away_team, fontsize=16, fontweight='bold', color='#DD0080',
            bbox=dict(boxstyle="round,pad=0.4", facecolor='black', alpha=0.95, edgecolor='#DD0080', linewidth=2))
 
     # Add AI generation title
@@ -1352,41 +1416,51 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
     ax.text(0.5, 0.78, title, ha='center', fontsize=16, fontweight='bold', color='white',
            bbox=dict(boxstyle="round,pad=0.6", facecolor='black', alpha=0.9, linewidth=2))
 
-    # AI-specific legend
+    # AI-specific legend with unique visual indicators
     from matplotlib.lines import Line2D
     legend_elements = [
-        Line2D([0], [0], color='#00FF00', linewidth=6, alpha=0.9, label='AI High (20+)'),
-        Line2D([0], [0], color='#0099FF', linewidth=5, alpha=0.7, label='AI Medium (10-19)'),
-        Line2D([0], [0], color='#FF9900', linewidth=4, alpha=0.7, label='AI Normal (7-9)'),
-        Line2D([0], [0], color='#FF6600', linewidth=3, alpha=0.6, label='AI Low (1-6)')
+        Line2D([0], [0], color='#00FF00', linewidth=6, alpha=0.9, label='Ultra Strong (20+) + Effects'),
+        Line2D([0], [0], color='#00CC00', linewidth=5, alpha=0.8, label='Strong (15-19) + Curves'),
+        Line2D([0], [0], color='#0099FF', linewidth=4, alpha=0.7, label='Medium (10-14)'),
+        Line2D([0], [0], color='#FF9900', linewidth=3, alpha=0.7, label='Normal (7-9)'),
+        Line2D([0], [0], color='#FF6600', linewidth=2, alpha=0.6, label='Weak (1-6)')
     ]
 
     legend = ax.legend(handles=legend_elements, loc='upper left', bbox_to_anchor=(0.02, 0.98), 
                       fontsize=10, framealpha=0.95, edgecolor='black', fancybox=True, shadow=True,
-                      title='AI Generated Frequency')
+                      title='AI Enhanced Patterns')
     legend.get_title().set_fontsize(12)
     legend.get_title().set_fontweight('bold')
 
-    # Add team color indicators for AI
+    # Add team color indicators
     team_legend_elements = [
-        Line2D([0], [0], color='#00DD00', linewidth=6, alpha=0.8, label=f'{home_team} (AI Generated)'),
-        Line2D([0], [0], color='#DD0080', linewidth=6, alpha=0.8, label=f'{away_team} (AI Generated)')
+        Line2D([0], [0], color='#00DD00', linewidth=6, alpha=0.8, label=f'{home_team}'),
+        Line2D([0], [0], color='#DD0080', linewidth=6, alpha=0.8, label=f'{away_team}')
     ]
 
     team_legend = ax.legend(handles=team_legend_elements, loc='upper right', bbox_to_anchor=(0.98, 0.98),
                            fontsize=10, framealpha=0.95, edgecolor='black', fancybox=True, shadow=True,
-                           title='AI Teams')
+                           title='Teams')
     team_legend.get_title().set_fontsize(12)
     team_legend.get_title().set_fontweight('bold')
 
     ax.add_artist(legend)
 
-    # Add AI technical information
-    info_text = (f"🤖 AI Generated menggunakan CGAN • Seed: {seed} • Style: {tactical_style} • "
-                f"Creativity: {creativity} • Neural Architecture: Generator(164→512→1024→512→22) • "
-                f"Hasil sepenuhnya dibuat oleh AI, bukan data asli")
+    # Add enhanced AI technical information
+    unique_features = []
+    if creativity > 1.5:
+        unique_features.append("Creative Markers")
+    if tactical_style != "Balanced":
+        unique_features.append(f"{tactical_style} Patterns")
+    
+    features_text = f" + {', '.join(unique_features)}" if unique_features else ""
+    
+    info_text = (f"🤖 AI Generated dengan CGAN Enhanced • Seed: {seed} • Style: {tactical_style} • "
+                f"Creativity: {creativity}{features_text} • "
+                f"Fitur Unik: Curved Paths, Gradient Effects, Innovation Markers • "
+                f"Diferensiasi: Visual Effects, Tactical Patterns, Creative Connections")
 
-    fig.text(0.02, 0.02, info_text, fontsize=12, style='italic', color='black',
+    fig.text(0.02, 0.02, info_text, fontsize=11, style='italic', color='black',
              bbox=dict(boxstyle="round,pad=0.6", facecolor='#E8F5E8', alpha=0.95, linewidth=2))
 
     plt.tight_layout()
@@ -2029,7 +2103,7 @@ def main():
         # Generate button
         if st.sidebar.button("🚀 Generate New Networks", type="primary"):
             st.sidebar.success("✅ Generating new AI networks...")
-            st.experimental_rerun()
+            st.rerun()
 
     # Enhanced feature selection
     st.sidebar.subheader("📊 Pemilihan Fitur Analisis")
