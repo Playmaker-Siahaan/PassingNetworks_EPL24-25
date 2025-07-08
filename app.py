@@ -655,7 +655,7 @@ def create_enhanced_passing_combinations_chart(team_name, match_id=None, dataset
 
 def create_shot_prediction_heatmap_with_pitch(team_name, match_id=None, datasets=None, formation="4-3-3"):
     """Create dynamic shot prediction zones heatmap based on formation and match characteristics"""
-    fig, ax = plt.subplots(figsize=(14, 10))
+    fig, ax = plt.subplots(figsize=(20, 14))
 
     # Draw professional football pitch
     draw_professional_football_pitch(ax)
@@ -805,7 +805,7 @@ def create_shot_prediction_heatmap_with_pitch(team_name, match_id=None, datasets
 
 def create_ball_direction_analysis_with_pitch(team_name, match_id=None, formation="4-3-3"):
     """Create dynamic ball direction prediction based on formation and match characteristics"""
-    fig, ax = plt.subplots(figsize=(14, 10))
+    fig, ax = plt.subplots(figsize=(20, 14))
 
     # Draw professional football pitch
     draw_professional_football_pitch(ax)
@@ -951,7 +951,7 @@ def create_ball_direction_analysis_with_pitch(team_name, match_id=None, formatio
 
 def create_goal_probability_zones_with_pitch(team_name, match_id=None, formation="4-3-3"):
     """Create dynamic goal probability zones based on formation and match characteristics"""
-    fig, ax = plt.subplots(figsize=(14, 10))
+    fig, ax = plt.subplots(figsize=(20, 14))
 
     # Draw professional football pitch
     draw_professional_football_pitch(ax)
@@ -1062,7 +1062,7 @@ def create_goal_probability_zones_with_pitch(team_name, match_id=None, formation
 
 def create_comprehensive_tactical_dashboard(home_team, away_team, match_id=None, datasets=None):
     """Create comprehensive tactical dashboard with enhanced explanations and proper text spacing"""
-    fig, axes = plt.subplots(2, 3, figsize=(24, 16))
+    fig, axes = plt.subplots(2, 3, figsize=(32, 22))
     fig.suptitle(f'Dashboard Taktik Komprehensif: {home_team} vs {away_team}', fontsize=20, fontweight='bold', y=0.96)
 
     # Calculate metrics from actual data when available
@@ -1268,7 +1268,7 @@ PENJELASAN DETAIL KOMPONEN DASHBOARD TAKTIK BERDASARKAN AI CGAN GENERATOR:
 
 def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_formation="4-3-3", away_formation="4-3-3", seed=42, tactical_style="Balanced", creativity=1.0):
     """Create AI generated passing networks using CGAN principles"""
-    fig, ax = plt.subplots(figsize=(24, 16))
+    fig, ax = plt.subplots(figsize=(32, 20))
 
     # Draw professional football pitch
     draw_professional_football_pitch(ax)
@@ -1493,7 +1493,7 @@ def visualize_ai_generated_networks_with_pitch(home_team, away_team, home_format
 
 def visualize_enhanced_passing_networks_with_pitch(home_team, away_team, formation="4-3-3", match_id=None, datasets=None):
     """Create enhanced passing network with detailed pitch based on actual match data"""
-    fig, ax = plt.subplots(figsize=(18, 12))
+    fig, ax = plt.subplots(figsize=(28, 18))
 
     # Draw professional football pitch
     draw_professional_football_pitch(ax)
