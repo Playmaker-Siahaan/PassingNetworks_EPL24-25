@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -10,8 +9,13 @@ from matplotlib.patches import Circle, Rectangle, Arc
 from matplotlib.lines import Line2D
 import seaborn as sns
 import warnings
+import os
+from dotenv import load_dotenv
 warnings.filterwarnings('ignore')
 
+load_dotenv()  # Memuat variabel dari file .env
+
+API_KEY = os.getenv("API_KEY")
 # Set page configuration
 st.set_page_config(
     page_title="Premier League CGAN Analysis 2024/2025",
@@ -474,6 +478,7 @@ def calculate_synthetic_connections(num_players):
             if player <= 4:  # Defenders connect to midfield
                 emergency_target = 5 if 5 < num_players else 6
             elif player <= 7:  # Midfielders connect to each other
+
                 emergency_target = 6 if player != 6 else 5
             else:  # Forwards connect to midfield
                 emergency_target = 6
@@ -1060,7 +1065,257 @@ def create_goal_probability_zones_with_pitch(team_name, match_id=None, formation
     plt.tight_layout()
     return fig
 
-def create_comprehensive_tactical_dashboard(home_team, away_team, match_id=None, datasets=None):
+def show_team_tactical_radar(home_team, away_team, tactical_style, creativity):
+    st.info(f"Radar Taktik Tim untuk {home_team} vs {away_team} (Style: {tactical_style}, Kreativitas: {creativity}) [Placeholder]")
+    # Contoh visualisasi dummy
+    import matplotlib.pyplot as plt
+    import numpy as np
+    categories = ['Penguasaan', 'Serangan', 'Kreativitas', 'Pressing', 'Defensif', 'Penyelesaian']
+    values_home = np.random.randint(60, 100, size=6).tolist()
+    values_away = np.random.randint(60, 100, size=6).tolist()
+    values_home += values_home[:1]
+    values_away += values_away[:1]
+    angles = np.linspace(0, 2 * np.pi, len(categories), endpoint=False).tolist()
+    angles += angles[:1]
+    fig, ax = plt.subplots(subplot_kw={'polar': True}, figsize=(6, 4))
+    ax.plot(angles, values_home, 'o-', linewidth=2, label=home_team)
+    ax.fill(angles, values_home, alpha=0.25)
+    ax.plot(angles, values_away, 'o-', linewidth=2, label=away_team)
+    ax.fill(angles, values_away, alpha=0.25)
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(categories)
+    ax.set_ylim(0, 100)
+    ax.legend()
+    st.pyplot(fig)
+
+def show_player_position_heatmap(home_team, away_team, home_formation, away_formation, seed, tactical_style):
+    st.info(f"Heatmap Posisi Pemain untuk {home_team} & {away_team} (Formasi: {home_formation} vs {away_formation}) [Placeholder]")
+    # Contoh visualisasi dummy
+    import matplotlib.pyplot as plt
+    import numpy as np
+    fig, ax = plt.subplots(figsize=(6, 4))
+    heatmap = np.random.rand(10, 10)
+    ax.imshow(heatmap, cmap='hot', interpolation='nearest')
+    ax.set_title("Heatmap Posisi Pemain (Dummy)")
+    st.pyplot(fig)
+
+def show_passing_accuracy_and_influence(home_team, away_team, home_formation, away_formation, seed, tactical_style):
+    st.info(f"Akurasi Umpan & Influence Map untuk {home_team} & {away_team} [Placeholder]")
+    # Contoh visualisasi dummy
+    import matplotlib.pyplot as plt
+    import numpy as np
+    fig, ax = plt.subplots(figsize=(6, 4))
+    players = [f"P{i+1}" for i in range(5)]
+    influence = np.random.randint(70, 100, size=5)
+    ax.barh(players, influence, color='#44AA99')
+    ax.set_xlabel('Skor Pengaruh')
+    ax.set_title("Influence Map (Dummy)")
+    st.pyplot(fig)
+
+def show_tactical_style_simulation(home_team, away_team, home_formation, away_formation, seed, tactical_style, creativity):
+    st.info(f"Simulasi Gaya Taktik AI: {tactical_style} (Kreativitas: {creativity}) [Placeholder]")
+    # Contoh visualisasi dummy
+    import matplotlib.pyplot as plt
+    import numpy as np
+    fig, ax = plt.subplots(figsize=(6, 4))
+    styles = ['Balanced', 'Attacking', 'Defensive', 'Possession', 'Counter-Attack']
+    values = np.random.randint(50, 100, size=len(styles))
+    ax.bar(styles, values, color='#1E5F8B')
+    ax.set_ylabel('Efektivitas')
+    ax.set_title("Simulasi Gaya Taktik (Dummy)")
+    st.pyplot(fig)
+
+def show_creativity_and_seed_controls(seed, creativity):
+    st.info(f"Kontrol Kreativitas: {creativity} | Random Seed: {seed} [Placeholder]")
+    # Contoh visualisasi dummy
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots(figsize=(6, 2))
+    ax.text(0.5, 0.5, f"Seed: {seed}\nKreativitas: {creativity}", ha='center', va='center', fontsize=14)
+    ax.axis('off')
+    st.pyplot(fig)
+    
+
+def create_comprehensive_tactical_dashboard(
+    home_team, away_team, home_formation, away_formation, seed, tactical_style, creativity, 
+    match_id=None, datasets=None
+):
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    fig, axes = plt.subplots(2, 3, figsize=(28, 16))
+    fig.suptitle(
+        f'Dashboard Taktik Komprehensif: {home_team} vs {away_team}',
+        fontsize=20, fontweight='bold', y=0.98
+    )
+
+    # --- 1. Performance Radar Chart ---
+    ax = axes[0, 0]
+    categories = ['Operan', 'Akurasi Pass', 'Tembakan', 'Tekel', 'Intersepsi']
+    try:
+        if datasets and match_id:
+            events_df = datasets['events']
+            passing_df = datasets['passing']
+            home_events = events_df[(events_df['match_id'] == match_id) & (events_df['team_name'] == home_team)]
+            away_events = events_df[(events_df['match_id'] == match_id) & (events_df['team_name'] == away_team)]
+            home_passes = passing_df[(passing_df['match_id'] == match_id) & (passing_df['team_name'] == home_team)]
+            away_passes = passing_df[(passing_df['match_id'] == match_id) & (passing_df['team_name'] == away_team)]
+            home_shots = len(home_events[home_events['event_type'] == 'shot'])
+            away_shots = len(away_events[away_events['event_type'] == 'shot'])
+            home_tackles = len(home_events[home_events['event_type'] == 'tackle'])
+            away_tackles = len(away_events[away_events['event_type'] == 'tackle'])
+            home_values = [min(100, len(home_passes) * 2), 85, home_shots * 8, home_tackles * 5, home_tackles * 3]
+            away_values = [min(100, len(away_passes) * 2), 82, away_shots * 8, away_tackles * 5, away_tackles * 3]
+        else:
+            home_values = [85, 88, 12, 18, 15]
+            away_values = [78, 82, 15, 22, 18]
+        angles = np.linspace(0, 2 * np.pi, len(categories), endpoint=False).tolist()
+        angles += angles[:1]
+        home_values += home_values[:1]
+        away_values += away_values[:1]
+        ax.plot(angles, home_values, 'o-', linewidth=4, label=home_team, color='#1E5F8B', markersize=8)
+        ax.fill(angles, home_values, alpha=0.25, color='#1E5F8B')
+        ax.plot(angles, away_values, 'o-', linewidth=4, label=away_team, color='#D32F2F', markersize=8)
+        ax.fill(angles, away_values, alpha=0.25, color='#D32F2F')
+        ax.set_xticks(angles[:-1])
+        ax.set_xticklabels(categories, fontsize=12, fontweight='bold')
+        ax.set_ylim(0, 100)
+        ax.set_title('1. Performance Radar\nPerbandingan Multi-Metrik Tim', fontweight='bold', fontsize=14, pad=20)
+        ax.legend(loc='upper right', fontsize=12)
+        ax.grid(True, alpha=0.4)
+        ax.text(0.5, -0.25, 
+            "Radar membandingkan 5 metrik utama (operan, akurasi pass, tembakan, tekel, intersepsi) kedua tim.\n"
+            "Semakin luas area, semakin optimal performa tim pada aspek tersebut.",
+            ha='center', va='top', fontsize=11, color='black', transform=ax.transAxes)
+    except Exception as e:
+        ax.text(0.5, 0.5, f"Error: {e}", ha='center', va='center', color='red')
+
+    # --- 2. Positional Accuracy ---
+    ax = axes[0, 1]
+    try:
+        positions = ['Kiper', 'Bek', 'Gelandang', 'Penyerang']
+        accuracy = [95, 87, 82, 78]
+        colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4']
+        bars = ax.bar(positions, accuracy, color=colors, alpha=0.8, edgecolor='black', linewidth=2)
+        ax.set_ylabel('Akurasi Pass (%)', fontweight='bold', fontsize=14)
+        ax.set_title('2. Akurasi Posisional\nPerforma Berdasarkan Posisi Lapangan', fontweight='bold', fontsize=14, pad=20)
+        ax.set_ylim(0, 100)
+        for bar, acc in zip(bars, accuracy):
+            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 2, 
+                   f'{acc}%', ha='center', va='bottom', fontweight='bold', fontsize=12)
+        ax.grid(axis='y', alpha=0.4)
+        ax.tick_params(axis='both', which='major', labelsize=12)
+        ax.text(0.5, -0.25, 
+            "Akurasi passing per lini (kiper, bek, gelandang, penyerang).\n"
+            "Menggambarkan efektivitas distribusi bola di setiap lini.",
+            ha='center', va='top', fontsize=11, color='black', transform=ax.transAxes)
+    except Exception as e:
+        ax.text(0.5, 0.5, f"Error: {e}", ha='center', va='center', color='red')
+
+    # --- 3. Player Influence ---
+    ax = axes[0, 2]
+    try:
+        if datasets and 'fpl_players' in datasets:
+            fpl_df = datasets['fpl_players']
+            all_players = fpl_df[fpl_df['team'].isin([home_team, away_team])]
+            top_players = all_players.nlargest(5, 'total_points') if 'total_points' in all_players.columns else all_players.head(5)
+            players = list(top_players['name'].iloc[:5])
+            influence = list(top_players['influence'].iloc[:5]) if 'influence' in top_players.columns else [92, 87, 83, 79, 75]
+        else:
+            players = ['Mohamed Salah', 'Kevin De Bruyne', 'Harry Kane', 'Bruno Fernandes', 'Sadio Mané']
+            influence = [92, 87, 83, 79, 75]
+        colors = ['#44AA99', '#88CCEE', '#DDCC77', '#CC6677', '#AA4499']
+        bars = ax.barh(players, influence, color=colors, alpha=0.8, edgecolor='black', linewidth=2)
+        ax.set_xlabel('Skor Pengaruh Individu', fontweight='bold', fontsize=14)
+        ax.set_title('3. Top 5 Player Influence\nPemain Paling Berpengaruh', fontweight='bold', fontsize=14, pad=20)
+        ax.set_xlim(0, 100)
+        for bar, inf in zip(bars, influence):
+            ax.text(bar.get_width() + 3, bar.get_y() + bar.get_height()/2, 
+                   f'{inf}', va='center', fontweight='bold', fontsize=12)
+        ax.grid(axis='x', alpha=0.4)
+        ax.tick_params(axis='both', which='major', labelsize=12)
+        ax.text(0.5, -0.25, 
+            "Ranking 5 pemain paling berpengaruh berdasarkan statistik FPL (total points & influence).\n"
+            "Semakin tinggi skor, semakin besar kontribusi pemain dalam membangun serangan.",
+            ha='center', va='top', fontsize=11, color='black', transform=ax.transAxes)
+    except Exception as e:
+        ax.text(0.5, 0.5, f"Error: {e}", ha='center', va='center', color='red')
+
+    # --- 4. Temporal Possession ---
+    ax = axes[1, 0]
+    try:
+        minutes = list(range(0, 91, 15))
+        possession_home = [60, 58, 62, 65, 68, 70, 67]
+        possession_away = [40, 42, 38, 35, 32, 30, 33]
+        ax.plot(minutes, possession_home, 'o-', color='#1E5F8B', label=home_team, linewidth=4, markersize=10)
+        ax.plot(minutes, possession_away, 'o-', color='#D32F2F', label=away_team, linewidth=4, markersize=10)
+        ax.set_xlabel('Waktu Pertandingan (Menit)', fontweight='bold', fontsize=14)
+        ax.set_ylabel('Penguasaan Bola (%)', fontweight='bold', fontsize=14)
+        ax.set_title('4. Tren Penguasaan Temporal\nEvolusi Kontrol Permainan', fontweight='bold', fontsize=14, pad=20)
+        ax.legend(fontsize=12)
+        ax.grid(True, alpha=0.4)
+        ax.set_ylim(0, 100)
+        ax.tick_params(axis='both', which='major', labelsize=12)
+        ax.text(0.5, -0.25, 
+            "Grafik perubahan penguasaan bola sepanjang pertandingan.\n"
+            "Menunjukkan periode dominasi dan momentum kedua tim.",
+            ha='center', va='top', fontsize=11, color='black', transform=ax.transAxes)
+    except Exception as e:
+        ax.text(0.5, 0.5, f"Error: {e}", ha='center', va='center', color='red')
+
+    # --- 5. Formation Usage ---
+    ax = axes[1, 1]
+    try:
+        formations = ['4-3-3', '4-4-2', '3-5-2', '4-2-3-1']
+        usage = [45, 30, 15, 10]
+        colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4']
+        wedges, texts, autotexts = ax.pie(usage, labels=formations, autopct='%1.1f%%',
+                                         colors=colors, startangle=90, textprops={'fontsize': 12})
+        ax.set_title('5. Distribusi Formasi\nPenggunaan Sistem Taktik', fontweight='bold', fontsize=14, pad=20)
+        for autotext in autotexts:
+            autotext.set_color('white')
+            autotext.set_fontweight('bold')
+            autotext.set_fontsize(11)
+        ax.text(0.5, -0.25, 
+            "Persentase penggunaan formasi utama sepanjang musim.\n"
+            "Memberikan gambaran kecenderungan taktik tim.",
+            ha='center', va='top', fontsize=11, color='black', transform=ax.transAxes)
+    except Exception as e:
+        ax.text(0.5, 0.5, f"Error: {e}", ha='center', va='center', color='red')
+
+    # --- 6. Action Distribution ---
+    ax = axes[1, 2]
+    try:
+        actions = ['Defensif', 'Netral', 'Ofensif']
+        home_actions = [25, 35, 40]
+        away_actions = [35, 40, 25]
+        x = np.arange(len(actions))
+        width = 0.35
+        bars1 = ax.bar(x - width/2, home_actions, width, label=home_team, color='#1E5F8B', alpha=0.8, edgecolor='black', linewidth=2)
+        bars2 = ax.bar(x + width/2, away_actions, width, label=away_team, color='#D32F2F', alpha=0.8, edgecolor='black', linewidth=2)
+        ax.set_xlabel('Jenis Pendekatan', fontweight='bold', fontsize=14)
+        ax.set_ylabel('Persentase Waktu (%)', fontweight='bold', fontsize=14)
+        ax.set_title('6. Distribusi Pendekatan\nGaya Bermain Dominan', fontweight='bold', fontsize=14, pad=20)
+        ax.set_xticks(x)
+        ax.set_xticklabels(actions, fontsize=12)
+        ax.legend(fontsize=12)
+        ax.grid(axis='y', alpha=0.4)
+        ax.tick_params(axis='both', which='major', labelsize=12)
+        for bars in [bars1, bars2]:
+            for bar in bars:
+                height = bar.get_height()
+                ax.text(bar.get_x() + bar.get_width()/2., height + 0.5,
+                       f'{height}%', ha='center', va='bottom', fontweight='bold', fontsize=11)
+        ax.text(0.5, -0.25, 
+            "Proporsi waktu tim dalam mode defensif, netral, dan ofensif.\n"
+            "Membantu analisis kecenderungan pendekatan taktik selama pertandingan.",
+            ha='center', va='top', fontsize=11, color='black', transform=ax.transAxes)
+    except Exception as e:
+        ax.text(0.5, 0.5, f"Error: {e}", ha='center', va='center', color='red')
+
+    plt.tight_layout(rect=[0, 0.05, 1, 0.95])
+    return fig
+
+# ...existing code...(home_team, away_team, match_id=None, datasets=None):
     """Create comprehensive tactical dashboard with enhanced explanations and proper text spacing"""
     fig, axes = plt.subplots(2, 3, figsize=(32, 22))
     fig.suptitle(f'Dashboard Taktik Komprehensif: {home_team} vs {away_team}', fontsize=20, fontweight='bold', y=0.96)
@@ -2311,7 +2566,15 @@ def main():
         </div>
         """, unsafe_allow_html=True)
 
-        fig_dashboard = create_comprehensive_tactical_dashboard(home_team, away_team, selected_match_id, datasets)
+        fig_dashboard = create_comprehensive_tactical_dashboard(
+    home_team,
+    away_team,
+    home_formation,
+    away_formation,
+    generation_seed if 'generation_seed' in locals() else 42,
+    tactical_style if 'tactical_style' in locals() else "Balanced",
+    creativity_level if 'creativity_level' in locals() else 1.0
+)
         st.pyplot(fig_dashboard)
         st.success("✅ Dashboard taktik komprehensif dengan penjelasan detail selesai")
 
